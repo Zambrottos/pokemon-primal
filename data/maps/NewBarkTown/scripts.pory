@@ -14,11 +14,7 @@ NewBarkTown_OnLoad::
 	end
 
 NewBarkTown_OnFrame::
-	map_script_2 VAR_NEWBARK_TOWN_STATE, 6, NewBarkTown_EventScript_ElmCallAfterLeague
-	map_script_2 VAR_NEWBARK_TOWN_STATE, 11, NewBarkTown_EventScript_ArcherArcadeCall
-    map_script_2 VAR_RIVAL_STATE, 0, NewBarkTown_EventScript_RivalIntro
-    map_script_2 VAR_RIVAL_STATE, 2, NewBarkTown_EventScript_RivalBattle
-	.2byte 0
+        .2byte 0
 
 NewBarkTown_EventScript_ElmCallAfterLeague::
 	lock
