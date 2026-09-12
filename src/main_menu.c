@@ -237,6 +237,7 @@ static void SpriteCB_MovePlayerDownWhileShrinking(struct Sprite *);
 static void Task_NewGameBirchSpeech_WaitForPlayerShrink(u8);
 static void Task_NewGameBirchSpeech_FadePlayerToWhite(u8);
 static void Task_NewGameBirchSpeech_Cleanup(u8);
+static void Task_NewGameBirchSpeech_SkipFinalSpeech(u8);
 static void SpriteCB_Null(struct Sprite *);
 static void Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox(u8);
 static void MainMenu_FormatSavegamePlayer(void);
@@ -1319,7 +1320,7 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
     gTasks[taskId].tTimer = NEW_GAME_SPEECH_OAK_DELAY;
-    PlayBGM(MUS_HG_ROUTE30);
+    // Music removed from opening sequence;
     ShowBg(0);
     ShowBg(1);
     HideBg(2);
@@ -1875,6 +1876,25 @@ static void Task_NewGameBirchSpeech_FadePlayerToWhite(u8 taskId)
     }
 }
 
+static void Task_NewGameBirchSpeech_SkipFinalSpeech(u8 taskId)
+{
+    u8 spriteId = gTasks[taskId].tPlayerSpriteId;
+
+    if (!gPaletteFade.active)
+    {
+        gSprites[spriteId].oam.affineMode = ST_OAM_AFFINE_NORMAL;
+        gSprites[spriteId].affineAnims = sSpriteAffineAnimTable_PlayerShrink;
+        InitSpriteAffineAnim(&gSprites[spriteId]);
+        StartSpriteAffineAnim(&gSprites[spriteId], 0);
+        gSprites[spriteId].callback = SpriteCB_MovePlayerDownWhileShrinking;
+
+        BeginNormalPaletteFade(PALETTES_BG, 0, 0, 16, RGB_BLACK);
+        FadeOutBGM(4);
+
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerShrink;
+    }
+}
+
 static void Task_NewGameBirchSpeech_Cleanup(u8 taskId)
 {
     if (!gPaletteFade.active)
@@ -2305,8 +2325,7 @@ static void Task_NewGameBirchSpeech_ReturnFromNamingScreenShowTextbox(u8 taskId)
 {
     if (gTasks[taskId].tTimer-- <= 0)
     {
-        DrawDialogFrameWithCustomTile(0, TRUE, BIRCH_DLG_BASE_TILE_NUM);
-        gTasks[taskId].func = Task_NewGameBirchSpeech_SoItsPlayerName;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_SkipFinalSpeech;
     }
 }
 
