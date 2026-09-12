@@ -92,7 +92,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIDGEY)",
-      "x": 16,
+      "x": 19,
       "y": 4,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
@@ -254,15 +254,15 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 16,
-      "y": 7,
+      "x": 19,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_WORLD_HUB",
       "dest_warp_id": "0"
     },
     {
-      "x": 15,
-      "y": 7,
+      "x": 20,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_TIN_TOWER_ROOF_DAY",
       "dest_warp_id": "0"
@@ -286,6 +286,13 @@
       "y": 28,
       "elevation": 0,
       "dest_map": "MAP_NEW_BARK_TOWN_HOUSE3",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 3,
+      "elevation": 0,
+      "dest_map": "MAP_PRIMAL_STARTER_CAVE",
       "dest_warp_id": "0"
     }
   ],

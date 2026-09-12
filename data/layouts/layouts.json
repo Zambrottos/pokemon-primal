@@ -10336,6 +10336,16 @@
       "secondary_tileset": "gTileset_SaffronCity_FightingDojoVIP",
       "border_filepath": "data/layouts/BattleCafe/border.bin",
       "blockdata_filepath": "data/layouts/BattleCafe/map.bin"
+    },
+    {
+      "id": "LAYOUT_PRIMAL_STARTER_CAVE",
+      "name": "PrimalStarterCave_Layout",
+      "width": 30,
+      "height": 30,
+      "primary_tileset": "gTileset_Johto_NorthEast",
+      "secondary_tileset": "gTileset_Cave_DragonsDen",
+      "border_filepath": "data/layouts/PrimalStarterCave/border.bin",
+      "blockdata_filepath": "data/layouts/PrimalStarterCave/map.bin"
     }
   ]
 }
