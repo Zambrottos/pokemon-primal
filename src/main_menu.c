@@ -186,6 +186,7 @@ static void Task_HandleMainMenuInput(u8);
 static void Task_HandleMainMenuAPressed(u8);
 static void Task_HandleMainMenuBPressed(u8);
 static void Task_NewGameBirchSpeech_Init(u8);
+static void Task_NewGameBirchSpeech_SkipOakIntro(u8);
 static void Task_DisplayMainMenuInvalidActionError(u8);
 static void AddBirchSpeechObjects(u8);
 static void LoadOakSpeechSceneGfx(void);
@@ -1314,7 +1315,7 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     // The menu is already black here. Keep the newly loaded scene black through
     // the next VBlank instead of exposing the hardware's white forced blank.
     BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
-    gTasks[taskId].func = Task_NewGameBirchSpeech_BeginFadeIn;
+    gTasks[taskId].func = Task_NewGameBirchSpeech_SkipOakIntro;
     gTasks[taskId].tPlayerSpriteId = SPRITE_NONE;
     gTasks[taskId].data[3] = 0xFF;
     gTasks[taskId].tTimer = NEW_GAME_SPEECH_OAK_DELAY;
@@ -1323,7 +1324,42 @@ static void Task_NewGameBirchSpeech_Init(u8 taskId)
     ShowBg(1);
     HideBg(2);
 }
+static void Task_NewGameBirchSpeech_SkipOakIntro(u8 taskId)
+{
+    u8 brendanSpriteId;
+    u8 maySpriteId;
 
+    brendanSpriteId = gTasks[taskId].tBrendanSpriteId;
+    maySpriteId = gTasks[taskId].tMaySpriteId;
+
+    gSprites[brendanSpriteId].x = NEW_GAME_SPEECH_BOY_X;
+    gSprites[brendanSpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+    gSprites[brendanSpriteId].invisible = FALSE;
+    gSprites[brendanSpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+
+    gSprites[maySpriteId].x = NEW_GAME_SPEECH_GIRL_X;
+    gSprites[maySpriteId].y = NEW_GAME_SPEECH_PLAYER_Y;
+    gSprites[maySpriteId].invisible = FALSE;
+    gSprites[maySpriteId].oam.objMode = ST_OAM_OBJ_NORMAL;
+
+    gTasks[taskId].tPlayerGender = MALE;
+    gTasks[taskId].tPlayerSpriteId = brendanSpriteId;
+
+    InitWindows(sNewGameBirchSpeechTextWindows);
+    LoadMainMenuWindowFrameTiles(0, 0xF3);
+    LoadMessageBoxGfx(0, BIRCH_DLG_BASE_TILE_NUM, BG_PLTT_ID(15));
+    DrawDialogFrameWithCustomTile(0, TRUE, BIRCH_DLG_BASE_TILE_NUM);
+    PutWindowTilemap(0);
+    CopyWindowToVram(0, COPYWIN_GFX);
+
+    BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+    ShowBg(0);
+    ShowBg(1);
+    HideBg(2);
+
+    NewGameBirchSpeech_PrintGenderQuestion();
+    gTasks[taskId].func = Task_NewGameBirchSpeech_WaitToShowGenderMenu;
+}
 static void Task_NewGameBirchSpeech_BeginFadeIn(u8 taskId)
 {
     // Keep the completed scene black until all graphics and palettes are ready.
