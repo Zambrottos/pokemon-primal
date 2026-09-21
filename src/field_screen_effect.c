@@ -24,6 +24,7 @@
 #include "mirage_tower.h"
 #include "metatile_behavior.h"
 #include "palette.h"
+#include "international_string_util.h"
 #include "oras_dowse.h"
 #include "overworld.h"
 #include "scanline_effect.h"
@@ -45,6 +46,7 @@
 
 static void Task_ExitNonAnimDoor(u8);
 static void Task_ExitNonDoor(u8);
+static void Task_PrimalNewGameFadeIn(u8);
 static void Task_DoContestHallWarp(u8);
 static void FillPalBufferWhite(void);
 static void Task_ExitDoor(u8);
@@ -302,6 +304,116 @@ void FieldCB_DefaultWarpExit(void)
     SetUpWarpExitTask();
     FollowerNPC_WarpSetEnd();
     LockPlayerFieldControls();
+}
+
+static const struct WindowTemplate sWindowTemplate_PrimalPrologue =
+{
+    .bg = 0,
+    .tilemapLeft = 0,
+    .tilemapTop = 0,
+    .width = 30,
+    .height = 20,
+    .paletteNum = 15,
+    .baseBlock = 1,
+};
+
+static const u8 sText_PrimalPrologue[] = _(
+    "The Year 151.\n"
+    "The Sixty-Second Dark Sky.\n"
+    "When the full Moon stands\n"
+    "at the crown of the heavens...\n"
+    "the veil of the world grows thin.\n"
+    "A strange phenomenon awakens...\n"
+    "and all beneath the Moon\n"
+    "are carried beyond\n"
+    "the world they know."
+);
+
+void FieldCB_PrimalNewGame(void)
+{
+    u8 windowId;
+    u8 taskId;
+
+    static const u8 sTextColors[] =
+    {
+        TEXT_COLOR_TRANSPARENT,
+        TEXT_COLOR_WHITE,
+        TEXT_COLOR_DARK_GRAY,
+    };
+
+    Overworld_PlaySpecialMapMusic();
+
+    FillPalBufferBlack();
+
+    FollowerNPC_WarpSetEnd();
+    LockPlayerFieldControls();
+
+    windowId = AddWindow(&sWindowTemplate_PrimalPrologue);
+
+    Menu_LoadStdPalAt(BG_PLTT_ID(15));
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
+    PutWindowTilemap(windowId);
+
+    AddTextPrinterParameterized4(
+        windowId,
+        FONT_NORMAL,
+        16,
+        8,
+        1,
+        0,
+        sTextColors,
+        TEXT_SKIP_DRAW,
+        sText_PrimalPrologue
+    );
+
+    CopyWindowToVram(windowId, COPYWIN_FULL);
+
+    taskId = CreateTask(Task_PrimalNewGameFadeIn, 9);
+    gTasks[taskId].data[1] = windowId;
+}
+
+static void Task_PrimalNewGameFadeIn(u8 taskId)
+{
+    u8 windowId = gTasks[taskId].data[1];
+
+    // Wait about 1 second before the text begins moving.
+    if (gTasks[taskId].data[0] < 60)
+    {
+        gTasks[taskId].data[0]++;
+        return;
+    }
+
+    // Scroll upward by 1 pixel every 3 frames.
+    gTasks[taskId].data[2]++;
+
+    if (gTasks[taskId].data[2] >= 3)
+    {
+        gTasks[taskId].data[2] = 0;
+
+        ScrollWindow(
+            windowId,
+            0,
+            1,
+            PIXEL_FILL(0)
+        );
+
+        CopyWindowToVram(windowId, COPYWIN_GFX);
+
+        gTasks[taskId].data[3]++;
+    }
+
+    if (gTasks[taskId].data[3] >= DISPLAY_HEIGHT)
+    {
+        ClearWindowTilemap(windowId);
+        CopyWindowToVram(windowId, COPYWIN_MAP);
+        RemoveWindow(windowId);
+
+        FadeScreen(FADE_FROM_BLACK, 0);
+        SetUpWarpExitTask();
+
+        DestroyTask(taskId);
+    }
 }
 
 void FieldCB_WarpExitFadeFromWhite(void)

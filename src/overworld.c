@@ -214,6 +214,7 @@ s16 gTimeUpdateCounter; // playTimeVBlanks will eventually overflow, so this is 
 
 // EWRAM vars
 EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
+EWRAM_DATA static bool8 sSuppressPrimalOpeningMapName = FALSE;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData sFixedDiveWarp = {0};
@@ -1899,8 +1900,9 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
-    //gFieldCallback = ExecuteTruckSequence;
+    gFieldCallback = FieldCB_PrimalNewGame;
     gFieldCallback2 = NULL;
+    sSuppressPrimalOpeningMapName = TRUE;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();
     SetMainCallback1(CB1_Overworld);
@@ -2316,10 +2318,15 @@ static bool32 LoadMapInStepsLocal(u8 *state, bool32 a2)
         (*state)++;
         break;
     case 11:
-        if (gMapHeader.showMapName == TRUE && SecretBaseMapPopupEnabled() == TRUE)
-            ShowMapNamePopup();
-        (*state)++;
-        break;
+    if (!sSuppressPrimalOpeningMapName
+     && gMapHeader.showMapName == TRUE
+     && SecretBaseMapPopupEnabled() == TRUE)
+        ShowMapNamePopup();
+
+    sSuppressPrimalOpeningMapName = FALSE;
+
+    (*state)++;
+    break;
     case 12:
         if (RunFieldCallback())
             (*state)++;
