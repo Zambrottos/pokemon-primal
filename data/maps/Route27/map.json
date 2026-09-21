@@ -14,11 +14,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_NEW_BARK_TOWN",
-      "offset": 11,
-      "direction": "left"
-    },
-    {
       "map": "MAP_ROUTE26",
       "offset": -42,
       "direction": "right"

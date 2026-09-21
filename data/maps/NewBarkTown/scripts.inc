@@ -657,482 +657,53 @@ NewBarkTown_Text_ElmsHouse:
 # 329 "data/maps/NewBarkTown/scripts.pory"
 	.string "Prof. Elm's House$"
 
-NewBarkTown_EventScript_RivalIntro::
+RivalsMailbox::
 # 333 "data/maps/NewBarkTown/scripts.pory"
 	lock
 # 334 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_0
+	checkplayergender
 # 335 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 336 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_WALL_HIT
-# 337 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_1
-# 338 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 339 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 340 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_2
-# 341 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 342 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_3
-# 343 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 344 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 345 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_3
-# 346 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 347 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 348 "data/maps/NewBarkTown/scripts.pory"
-	playbgm MUS_HG_LYRA, TRUE
-# 349 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalIntro_Movement_4
-# 350 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 351 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, Common_Movement_ExclamationMark
-# 352 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_PIN
-# 353 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_5
-# 354 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_6
-# 356 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 357 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_7
-# 358 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 359 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 360 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_7
-# 361 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 362 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 363 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalIntro_Movement_8
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL, NewBarkTown_EventScript_RivalIntro_Movement_9
-# 365 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 366 "data/maps/NewBarkTown/scripts.pory"
-	setflag FLAG_HIDE_NEWBARK_RIVALMARILL
-# 367 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_RIVAL
-# 368 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL
-# 369 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL2
-# 370 "data/maps/NewBarkTown/scripts.pory"
-	setvar VAR_RIVAL_STATE, 1
-# 371 "data/maps/NewBarkTown/scripts.pory"
-	fadedefaultbgm
-# 372 "data/maps/NewBarkTown/scripts.pory"
-	release
-	end
-
-
-NewBarkTown_EventScript_RivalBattle::
-# 377 "data/maps/NewBarkTown/scripts.pory"
-	lock
-# 378 "data/maps/NewBarkTown/scripts.pory"
-	playbgm MUS_HG_LYRA, TRUE
-# 379 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_0
-# 380 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 381 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 382 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_0
-# 383 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_LEDGE
-# 384 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_1
-# 387 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalBattle_Movement_2
-# 388 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement LOCALID_NEWBARK_MARILL2
-# 389 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, Common_Movement_ExclamationMark
-# 390 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_PIN
-# 391 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 392 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_PLAYER, NewBarkTown_EventScript_RivalBattle_Movement_3
-# 393 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 394 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalIntro_Movement_5
-# 395 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 396 "data/maps/NewBarkTown/scripts.pory"
-	createfieldmugshotrival
-# 397 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_0
-# 398 "data/maps/NewBarkTown/scripts.pory"
-	applymovement OBJ_EVENT_ID_FOLLOWER, NewBarkTown_EventScript_RivalBattle_Movement_4
-# 399 "data/maps/NewBarkTown/scripts.pory"
-	playse SE_BALL_OPEN
-# 400 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 401 "data/maps/NewBarkTown/scripts.pory"
-	bufferleadmonspeciesname STR_VAR_1
-# 402 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_1
-# 404 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_2
-# 405 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_3
-# 407 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_4
-# 409 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_5
-# 412 "data/maps/NewBarkTown/scripts.pory"
-	setflag FLAG_NO_WHITEOUT
-# 413 "data/maps/NewBarkTown/scripts.pory"
-	checkplayergender
-# 414 "data/maps/NewBarkTown/scripts.pory"
-	compare VAR_RESULT, MALE
-	goto_if_eq NewBarkTown_EventScript_RivalBattle_2
-# 417 "data/maps/NewBarkTown/scripts.pory"
-	trainerbattle_no_intro TRAINER_RIVALGOLD1, NewBarkTown_EventScript_RivalBattle_Text_6
-NewBarkTown_EventScript_RivalBattle_1:
-# 419 "data/maps/NewBarkTown/scripts.pory"
-	clearflag FLAG_NO_WHITEOUT
-# 420 "data/maps/NewBarkTown/scripts.pory"
-	special HealPlayerParty
-# 421 "data/maps/NewBarkTown/scripts.pory"
-	createfieldmugshotrival
-# 422 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_7
-# 424 "data/maps/NewBarkTown/scripts.pory"
-	msgbox NewBarkTown_EventScript_RivalBattle_Text_8
-# 427 "data/maps/NewBarkTown/scripts.pory"
-	removefieldmugshot
-# 428 "data/maps/NewBarkTown/scripts.pory"
-	closemessage
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_RIVAL, NewBarkTown_EventScript_RivalBattle_Movement_5
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	applymovement LOCALID_NEWBARK_MARILL2, NewBarkTown_EventScript_RivalBattle_Movement_6
-# 431 "data/maps/NewBarkTown/scripts.pory"
-	waitmovement 0
-# 432 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_RIVAL
-# 433 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL
-# 434 "data/maps/NewBarkTown/scripts.pory"
-	removeobject LOCALID_NEWBARK_MARILL2
-# 435 "data/maps/NewBarkTown/scripts.pory"
-	fadedefaultbgm
-# 436 "data/maps/NewBarkTown/scripts.pory"
-	setvar VAR_RIVAL_STATE, 3
-# 437 "data/maps/NewBarkTown/scripts.pory"
-	release
-	end
-
-NewBarkTown_EventScript_RivalBattle_2:
-# 415 "data/maps/NewBarkTown/scripts.pory"
-	trainerbattle_no_intro TRAINER_RIVALCRYSTAL1, NewBarkTown_EventScript_RivalBattle_Text_6
-	goto NewBarkTown_EventScript_RivalBattle_1
-
-
-RivalsMailbox::
-# 442 "data/maps/NewBarkTown/scripts.pory"
-	lock
-# 443 "data/maps/NewBarkTown/scripts.pory"
-	checkplayergender
-# 444 "data/maps/NewBarkTown/scripts.pory"
 	compare VAR_RESULT, MALE
 	goto_if_eq RivalsMailbox_2
-# 447 "data/maps/NewBarkTown/scripts.pory"
+# 338 "data/maps/NewBarkTown/scripts.pory"
 	msgbox RivalsMailbox_Text_1
 RivalsMailbox_1:
-# 449 "data/maps/NewBarkTown/scripts.pory"
+# 340 "data/maps/NewBarkTown/scripts.pory"
 	release
 	end
 
 RivalsMailbox_2:
-# 445 "data/maps/NewBarkTown/scripts.pory"
+# 336 "data/maps/NewBarkTown/scripts.pory"
 	msgbox RivalsMailbox_Text_0
 	goto RivalsMailbox_1
 
 
 NewBarkTown_EventScript_ArcherArcadeCall::
-# 454 "data/maps/NewBarkTown/scripts.pory"
+# 345 "data/maps/NewBarkTown/scripts.pory"
 	lock
-# 455 "data/maps/NewBarkTown/scripts.pory"
+# 346 "data/maps/NewBarkTown/scripts.pory"
 	pokenavcall NewBarkTown_EventScript_ArcherArcadeCall_Text_0
-# 470 "data/maps/NewBarkTown/scripts.pory"
+# 361 "data/maps/NewBarkTown/scripts.pory"
 	waitmessage
-# 471 "data/maps/NewBarkTown/scripts.pory"
+# 362 "data/maps/NewBarkTown/scripts.pory"
 	delay 30
-# 472 "data/maps/NewBarkTown/scripts.pory"
+# 363 "data/maps/NewBarkTown/scripts.pory"
 	setvar VAR_NEWBARK_TOWN_STATE, 12
-# 473 "data/maps/NewBarkTown/scripts.pory"
+# 364 "data/maps/NewBarkTown/scripts.pory"
 	release
 	end
 
 
-# 334 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_0:
-# 334 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 334 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 334 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 334 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 334 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-	step_end
-
-# 337 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_1:
-# 337 "data/maps/NewBarkTown/scripts.pory"
-	jump_down
-	step_end
-
-# 340 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_2:
-# 340 "data/maps/NewBarkTown/scripts.pory"
-	walk_up
-	step_end
-
-# 342 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_3:
-# 342 "data/maps/NewBarkTown/scripts.pory"
-	jump_in_place_up
-	step_end
-
-# 349 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_4:
-# 349 "data/maps/NewBarkTown/scripts.pory"
-	walk_right
-# 349 "data/maps/NewBarkTown/scripts.pory"
-	walk_right
-	step_end
-
-# 353 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_5:
-# 353 "data/maps/NewBarkTown/scripts.pory"
-	face_left
-	step_end
-
-# 355 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_6:
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 355 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-	step_end
-
-# 357 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_7:
-# 357 "data/maps/NewBarkTown/scripts.pory"
-	jump_in_place_left
-	step_end
-
-# 363 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_8:
-# 363 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 363 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 363 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 363 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-	step_end
-
-# 364 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalIntro_Movement_9:
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 364 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-	step_end
-
-# 379 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_0:
-# 379 "data/maps/NewBarkTown/scripts.pory"
-	jump_in_place_right
-	step_end
-
-# 385 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_1:
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_right
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_right
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_down
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_down
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_left
-# 385 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_left
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_up
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_right
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_right
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_down
-# 386 "data/maps/NewBarkTown/scripts.pory"
-	face_left
-	step_end
-
-# 387 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_2:
-# 387 "data/maps/NewBarkTown/scripts.pory"
-	face_up
-	step_end
-
-# 392 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_3:
-# 392 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 392 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 392 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 392 "data/maps/NewBarkTown/scripts.pory"
-	walk_right
-	step_end
-
-# 398 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_4:
-# 398 "data/maps/NewBarkTown/scripts.pory"
-	walk_fast_left
-# 398 "data/maps/NewBarkTown/scripts.pory"
-	face_right
-# 398 "data/maps/NewBarkTown/scripts.pory"
-	exit_pokeball
-# 398 "data/maps/NewBarkTown/scripts.pory"
-	set_visible
-	step_end
-
-# 429 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_5:
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 429 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-	step_end
-
-# 430 "data/maps/NewBarkTown/scripts.pory"
-NewBarkTown_EventScript_RivalBattle_Movement_6:
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_left
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-# 430 "data/maps/NewBarkTown/scripts.pory"
-	walk_down
-	step_end
-
-NewBarkTown_EventScript_RivalBattle_Text_0:
-# 397 "data/maps/NewBarkTown/scripts.pory"
-	.string "{PLAYER}!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_1:
-# 402 "data/maps/NewBarkTown/scripts.pory"
-	.string "So you picked...\n"
-	.string "a {STR_VAR_1}!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_2:
-# 404 "data/maps/NewBarkTown/scripts.pory"
-	.string "That's a cute Pokémon you have!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_3:
-# 405 "data/maps/NewBarkTown/scripts.pory"
-	.string "When you walk with it, it'll become\n"
-	.string "more friendly!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_4:
-# 407 "data/maps/NewBarkTown/scripts.pory"
-	.string "You should turn around and talk to it\n"
-	.string "sometimes, too.$"
-
-NewBarkTown_EventScript_RivalBattle_Text_5:
-# 409 "data/maps/NewBarkTown/scripts.pory"
-	.string "Hey, why don't we have a battle?\n"
-	.string "That's what trainers usually do when\l"
-	.string "they meet!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_6:
-# 415 "data/maps/NewBarkTown/scripts.pory"
-	.string "You did really well, {PLAYER}!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_7:
-# 422 "data/maps/NewBarkTown/scripts.pory"
-	.string "That was really fun, and both of our\n"
-	.string "Pokémon did their best!$"
-
-NewBarkTown_EventScript_RivalBattle_Text_8:
-# 424 "data/maps/NewBarkTown/scripts.pory"
-	.string "You got a task from Elm right?\n"
-	.string "I'll leave you to it then.\l"
-	.string "See ya!$"
-
 RivalsMailbox_Text_0:
-# 445 "data/maps/NewBarkTown/scripts.pory"
+# 336 "data/maps/NewBarkTown/scripts.pory"
 	.string "Crystal's house$"
 
 RivalsMailbox_Text_1:
-# 447 "data/maps/NewBarkTown/scripts.pory"
+# 338 "data/maps/NewBarkTown/scripts.pory"
 	.string "Gold's house$"
 
 NewBarkTown_EventScript_ArcherArcadeCall_Text_0:
-# 455 "data/maps/NewBarkTown/scripts.pory"
+# 346 "data/maps/NewBarkTown/scripts.pory"
 	.string "???: Greetings, {PLAYER}.\p"
 	.string "This is Archer speaking.\p"
 	.string "Archer: I've heard of your victory\n"

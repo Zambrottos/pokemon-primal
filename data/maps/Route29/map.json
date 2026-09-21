@@ -19,11 +19,6 @@
       "direction": "left"
     },
     {
-      "map": "MAP_NEW_BARK_TOWN",
-      "offset": 5,
-      "direction": "right"
-    },
-    {
       "map": "MAP_ROUTE46",
       "offset": 24,
       "direction": "up"
