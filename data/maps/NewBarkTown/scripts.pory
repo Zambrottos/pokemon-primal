@@ -60,9 +60,22 @@ NewBarkTown_PrimalOpening::
 
         delay 30
 
-	msgbox NewBarkTown_Text_PrimalOpeningDots, MSGBOX_DEFAULT
+        applymovement OBJ_EVENT_ID_PLAYER, NewBarkTown_Movement_PrimalLookAround
+        waitmovement OBJ_EVENT_ID_PLAYER
 
+        msgbox NewBarkTown_Text_PrimalOpeningDots, MSGBOX_DEFAULT
+	closemessage
+	
         setflag FLAG_PRIMAL_OPENING_COMPLETE
+	releaseall
+	end
+
+NewBarkTown_Movement_PrimalLookAround:
+        walk_in_place_left
+        delay_16
+        walk_in_place_right
+        delay_16
+        step_end
 
 NewBarkTown_PrimalOpening_End::
         releaseall

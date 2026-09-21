@@ -70,6 +70,7 @@
 #include "constants/map_types.h"
 #include "constants/battle_frontier.h"
 #include "constants/party_menu.h"
+#include "constants/songs.h"
 #include "daycare.h"
 
 typedef u16 (*SpecialFunc)(void);
@@ -1806,10 +1807,12 @@ bool8 ScrCmd_closemessage(struct ScriptContext *ctx)
 
 static bool8 WaitForAorBPress(void)
 {
-    if (JOY_NEW(A_BUTTON))
+    if (JOY_NEW(A_BUTTON | B_BUTTON))
+    {
+        PlaySE(SE_CLICK);
         return TRUE;
-    if (JOY_NEW(B_BUTTON))
-        return TRUE;
+    }
+
     return FALSE;
 }
 
