@@ -312,34 +312,55 @@ static const struct WindowTemplate sWindowTemplate_PrimalPrologue =
     .tilemapLeft = 0,
     .tilemapTop = 0,
     .width = 30,
-    .height = 20,
+    // Two off-screen tile rows hold the next line before it scrolls into view.
+    .height = (DISPLAY_HEIGHT + 16) / 8,
     .paletteNum = 15,
     .baseBlock = 1,
 };
 
-static const u8 sText_PrimalPrologue[] = _(
-    "The Year 151.\n"
-    "The Sixty-Second Dark Sky.\n"
-    "When the full Moon stands\n"
-    "at the crown of the heavens...\n"
-    "the veil of the world grows thin.\n"
-    "A strange phenomenon awakens...\n"
-    "and all beneath the Moon\n"
-    "are carried beyond\n"
-    "the world they know."
-);
+static const u8 sText_PrimalPrologue_00[] = _("The Year 151.");
+static const u8 sText_PrimalPrologue_01[] = _("The Sixty-Second Dark Sky.");
+static const u8 sText_PrimalPrologue_02[] = _("When the full Moon stands");
+static const u8 sText_PrimalPrologue_03[] = _("at the crown of the heavens...");
+static const u8 sText_PrimalPrologue_04[] = _("the veil of the world grows thin.");
+static const u8 sText_PrimalPrologue_05[] = _("A strange phenomenon awakens...");
+static const u8 sText_PrimalPrologue_06[] = _("and all beneath the Moon");
+static const u8 sText_PrimalPrologue_07[] = _("are carried beyond");
+static const u8 sText_PrimalPrologue_08[] = _("the world they know.");
 
-void FieldCB_PrimalNewGame(void)
+static const u8 *const sPrimalPrologueLines[] =
 {
-    u8 windowId;
-    u8 taskId;
+    sText_PrimalPrologue_00,
+    sText_PrimalPrologue_01,
+    sText_PrimalPrologue_02,
+    sText_PrimalPrologue_03,
+    sText_PrimalPrologue_04,
+    sText_PrimalPrologue_05,
+    sText_PrimalPrologue_06,
+    sText_PrimalPrologue_07,
+    sText_PrimalPrologue_08,
+};
 
+static void PrintPrimalPrologueLine(u8 windowId, u8 line)
+{
     static const u8 sTextColors[] =
     {
         TEXT_COLOR_TRANSPARENT,
         TEXT_COLOR_WHITE,
         TEXT_COLOR_DARK_GRAY,
     };
+    const u8 *text = sPrimalPrologueLines[line];
+    s32 x = GetStringCenterAlignXOffsetWithLetterSpacing(FONT_NORMAL, text, DISPLAY_WIDTH, 1);
+
+    // Render directly into the same tiled window, below the visible screen.
+    AddTextPrinterParameterized4(windowId, FONT_NORMAL, x, DISPLAY_HEIGHT,
+        1, 0, sTextColors, TEXT_SKIP_DRAW, text);
+}
+
+void FieldCB_PrimalNewGame(void)
+{
+    u8 windowId;
+    u8 taskId;
 
     Overworld_PlaySpecialMapMusic();
 
@@ -349,28 +370,25 @@ void FieldCB_PrimalNewGame(void)
     LockPlayerFieldControls();
 
     windowId = AddWindow(&sWindowTemplate_PrimalPrologue);
+    if (windowId == WINDOW_NONE)
+    {
+        FadeScreen(FADE_FROM_BLACK, 0);
+        SetUpWarpExitTask();
+        return;
+    }
 
     Menu_LoadStdPalAt(BG_PLTT_ID(15));
 
     FillWindowPixelBuffer(windowId, PIXEL_FILL(0));
     PutWindowTilemap(windowId);
 
-    AddTextPrinterParameterized4(
-        windowId,
-        FONT_NORMAL,
-        16,
-        8,
-        1,
-        0,
-        sTextColors,
-        TEXT_SKIP_DRAW,
-        sText_PrimalPrologue
-    );
+    PrintPrimalPrologueLine(windowId, 0);
 
     CopyWindowToVram(windowId, COPYWIN_FULL);
 
     taskId = CreateTask(Task_PrimalNewGameFadeIn, 9);
     gTasks[taskId].data[1] = windowId;
+    gTasks[taskId].data[4] = 1; // Next line; the first is already below the screen.
 }
 
 static void Task_PrimalNewGameFadeIn(u8 taskId)
@@ -398,12 +416,21 @@ static void Task_PrimalNewGameFadeIn(u8 taskId)
             PIXEL_FILL(0)
         );
 
-        CopyWindowToVram(windowId, COPYWIN_GFX);
-
         gTasks[taskId].data[3]++;
+
+        // The previous line has cleared the hidden strip after 16 pixels.
+        if (gTasks[taskId].data[4] < ARRAY_COUNT(sPrimalPrologueLines)
+         && gTasks[taskId].data[3] % 16 == 0)
+        {
+            PrintPrimalPrologueLine(windowId, gTasks[taskId].data[4]);
+            gTasks[taskId].data[4]++;
+        }
+
+        CopyWindowToVram(windowId, COPYWIN_GFX);
     }
 
-    if (gTasks[taskId].data[3] >= DISPLAY_HEIGHT)
+    // Let the entire last line leave the top before revealing Musnah.
+    if (gTasks[taskId].data[3] >= (ARRAY_COUNT(sPrimalPrologueLines) - 1) * 16 + DISPLAY_HEIGHT + 16)
     {
         ClearWindowTilemap(windowId);
         CopyWindowToVram(windowId, COPYWIN_MAP);
