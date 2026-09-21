@@ -14,6 +14,7 @@ NewBarkTown_OnLoad::
 	end
 
 NewBarkTown_OnFrame::
+	map_script_2 VAR_TEMP_0, 0, NewBarkTown_PrimalOpening
         .2byte 0
 
 NewBarkTown_EventScript_ElmCallAfterLeague::
@@ -31,6 +32,44 @@ NewBarkTown_OnTransition::
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 2, NewBarkTown_Set_TalkToElm
 	goto_if_eq VAR_NEWBARK_TOWN_STATE, 4, NewBarkTown_Set_TalkToMom
 	end
+
+NewBarkTown_PrimalOpening::
+        lockall
+        setvar VAR_TEMP_0, 1
+        goto_if_set FLAG_PRIMAL_OPENING_COMPLETE, NewBarkTown_PrimalOpening_End
+
+        delay 45
+
+        playse SE_THUNDER
+        setvar VAR_0x8004, 0
+        setvar VAR_0x8005, 3
+        setvar VAR_0x8006, 4
+        setvar VAR_0x8007, 2
+        special ShakeCamera
+        waitstate
+
+        delay 30
+
+        playse SE_THUNDER
+        setvar VAR_0x8004, 0
+        setvar VAR_0x8005, 3
+        setvar VAR_0x8006, 4
+        setvar VAR_0x8007, 2
+        special ShakeCamera
+        waitstate
+
+        delay 30
+
+	msgbox NewBarkTown_Text_PrimalOpeningDots, MSGBOX_DEFAULT
+
+        setflag FLAG_PRIMAL_OPENING_COMPLETE
+
+NewBarkTown_PrimalOpening_End::
+        releaseall
+        end
+
+NewBarkTown_Text_PrimalOpeningDots:
+        .string "...$"
 
 NewBarkTown_Set_TalkToElm::
 	clearflag FLAG_HIDE_SILVER_NEWBARKTOWN

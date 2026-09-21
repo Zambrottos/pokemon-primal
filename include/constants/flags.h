@@ -1337,7 +1337,7 @@
 #define FLAG_DEFEATED_ELITE_4_BRUNO                                 0x4FD
 #define FLAG_DEFEATED_ELITE_4_KAREN                                 0x4FE
 
-#define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                                           0x4FF // Unused Flag
+#define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER                  0x4FF // Unused Flag
 
 // Trainer Flags
 // Trainer flags occupy TRAINER_FLAGS_START through TRAINER_FLAGS_END.
@@ -1354,6 +1354,7 @@
 #define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
 #define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x2)
 #define FLAG_UNUSED_0x863                            (SYSTEM_FLAGS + 0x3) // Unused Flag
+#define FLAG_PRIMAL_OPENING_COMPLETE                 FLAG_UNUSED_0x863
 #define FLAG_SYS_GAME_CLEAR                          (SYSTEM_FLAGS + 0x4)
 #define FLAG_SYS_CHAT_USED                           (SYSTEM_FLAGS + 0x5)
 #define FLAG_UNLOCKED_TRENDY_SAYINGS                 (SYSTEM_FLAGS + 0x6)
