@@ -3202,7 +3202,7 @@ static void InitLinkRoomStartMenuScript(void)
 
 static void RunInteractLocalPlayerScript(const u8 *script)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     ScriptContext_SetupScript(script);
     LockPlayerFieldControls();
 }
@@ -3216,7 +3216,7 @@ static void RunConfirmLeaveCableClubScript(void)
 
 static void InitMenuBasedScript(const u8 *script)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     ScriptContext_SetupScript(script);
     LockPlayerFieldControls();
 }

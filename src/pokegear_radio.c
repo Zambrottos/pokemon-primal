@@ -612,7 +612,7 @@ static void Task_PokegearRadioInput(u8 taskId)
 
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sLastTuningPos = sRadio->tuningPos;
         if (sRadio->currentMusic == 0)
             PlayNewMapMusic(GetCurrLocationDefaultMusic());

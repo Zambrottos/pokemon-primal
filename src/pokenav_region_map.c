@@ -410,7 +410,7 @@ static u32 LoopedTask_RegionMapZoomOut(s32 taskState)
     switch (taskState)
     {
     case 0:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         ChangeBgYForZoom(FALSE);
         SetRegionMapDataForZoom();
         return LT_INC_AND_PAUSE;
@@ -437,7 +437,7 @@ static u32 LoopedTask_RegionMapZoomIn(s32 taskState)
     switch (taskState)
     {
     case 0:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         UpdateMapSecInfoWindow(state);
         return LT_INC_AND_PAUSE;
     case 1:
@@ -469,7 +469,7 @@ static u32 LoopedTask_ExitRegionMap(s32 taskState)
     switch (taskState)
     {
     case 0:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         PokenavFadeScreen(POKENAV_FADE_TO_BLACK);
         return LT_INC_AND_PAUSE;
     case 1:
@@ -497,7 +497,7 @@ static u32 LoopedTask_TreatAsPokeNavFlyMap(s32 taskState)
     switch (taskState)
     {
     case 0:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         struct RegionMap* regionMap = GetSubstructPtr(POKENAV_SUBSTRUCT_REGION_MAP);
         SetFlyDestination(regionMap);
         gSkipShowMonAnim = TRUE;

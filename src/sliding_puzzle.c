@@ -836,7 +836,7 @@ static void SelectTile(void)
     sSlidingPuzzle->tiles[cursor->sRow][cursor->sCol] = tile;
 
     cursor->sAnimating = FALSE;
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     CheckForSolution();
 }
 
@@ -850,7 +850,7 @@ static void PlaceTile(void)
     sSlidingPuzzle->heldTile = __;
 
     cursor->sAnimating = TRUE;
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     CheckForSolution();
 }
 

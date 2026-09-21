@@ -888,14 +888,14 @@ static void Task_BirchCaseRecievedMon(u8 taskId)
 {
     if(JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_WaitForFadeAndOpenNamingScreen;
         return;
     }
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_BirchCaseTurnOff;
         return;
@@ -911,7 +911,7 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
         bool8 isShiny = GetMonData(starter, MON_DATA_IS_SHINY);
         u32 personality = GetMonData(starter, MON_DATA_PERSONALITY);
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         PrintTextToBottomBar(RECIEVED_MON);
         FlagSet(FLAG_SYS_POKEMON_GET);
         VarSet(VAR_STARTER_MON, sStarterChoices[sBirchCaseDataPtr->handPosition].starterChoice);
@@ -927,7 +927,7 @@ static void Task_BirchCaseConfirmSelection(u8 taskId)
     }
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         PrintTextToBottomBar(CHOOSE_MON);
         gTasks[taskId].func = Task_BirchCaseMain;
         return;
@@ -952,7 +952,7 @@ static void Task_BirchCaseMain(u8 taskId)
     u16 oldPosition = sBirchCaseDataPtr->handPosition;
     if(JOY_NEW(DPAD_UP))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if(sBirchCaseDataPtr->handPosition <= BALL_TOP_FOURTH) // top row move up
         {
             if(sBirchCaseDataPtr->handPosition < BALL_TOP_THIRD)
@@ -978,7 +978,7 @@ static void Task_BirchCaseMain(u8 taskId)
     }
     if(JOY_NEW(DPAD_DOWN))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if(sBirchCaseDataPtr->handPosition <= BALL_TOP_FOURTH) // top row move down
         {
             if(sBirchCaseDataPtr->handPosition < BALL_TOP_THIRD)
@@ -1007,7 +1007,7 @@ static void Task_BirchCaseMain(u8 taskId)
     }
     if(JOY_NEW(DPAD_RIGHT))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if(sBirchCaseDataPtr->handPosition <= BALL_TOP_FOURTH) // top row move down
         {
             if(sBirchCaseDataPtr->handPosition == BALL_TOP_FOURTH) // top row move down
@@ -1034,7 +1034,7 @@ static void Task_BirchCaseMain(u8 taskId)
     }
     if(JOY_NEW(DPAD_LEFT))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if(sBirchCaseDataPtr->handPosition <= BALL_TOP_FOURTH) // top row move down
         {
             if(sBirchCaseDataPtr->handPosition == BALL_TOP_FIRST) // top row move down
@@ -1063,7 +1063,7 @@ static void Task_BirchCaseMain(u8 taskId)
     {
         if(sStarterChoices[sBirchCaseDataPtr->handPosition].species != SPECIES_NONE) // If spot empty don't go to next control flow state
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             PrintTextToBottomBar(CONFIRM_SELECTION);
             gTasks[taskId].func = Task_BirchCaseConfirmSelection;
             return;

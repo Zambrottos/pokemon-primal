@@ -1435,7 +1435,7 @@ static void Task_GameBoardMainInput(u8 taskId)
     if (!JOY_NEW(A_BUTTON))
         return;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     switch (GetGameBoardMode())
     {
         case ARCADE_BOARD_MODE_WAIT:

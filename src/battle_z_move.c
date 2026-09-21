@@ -259,7 +259,7 @@ bool32 MoveSelectionDisplayZMove(enum Move zmove, enum BattlerId battler)
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     enum Move move = moveInfo->moves[gMoveSelectionCursor[battler]];
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gBattleStruct->zmove.viewing = TRUE;
     if (zmove != MOVE_NONE)
     {

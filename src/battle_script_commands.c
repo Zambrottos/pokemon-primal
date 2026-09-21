@@ -6535,21 +6535,21 @@ static void Cmd_yesnoboxlearnmove(void)
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 0;
             BattleCreateYesNoCursorAt(0);
         }
         if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 1;
             BattleCreateYesNoCursorAt(1);
         }
         if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             if (gBattleCommunication[1] == 0)
             {
                 HandleBattleWindow(YESNOBOX_X_Y, WINDOW_CLEAR);
@@ -6563,7 +6563,7 @@ static void Cmd_yesnoboxlearnmove(void)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             gBattleScripting.learnMoveState = 5;
         }
         break;
@@ -6651,21 +6651,21 @@ static void Cmd_yesnoboxstoplearningmove(void)
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 0;
             BattleCreateYesNoCursorAt(0);
         }
         if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 1;
             BattleCreateYesNoCursorAt(1);
         }
         if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
 
             if (gBattleCommunication[1] != 0)
                 gBattlescriptCurrInstr = cmd->noInstr;
@@ -6676,7 +6676,7 @@ static void Cmd_yesnoboxstoplearningmove(void)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             gBattlescriptCurrInstr = cmd->noInstr;
             HandleBattleWindow(YESNOBOX_X_Y, WINDOW_CLEAR);
         }
@@ -7020,14 +7020,14 @@ static void Cmd_yesnobox(void)
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 0;
             BattleCreateYesNoCursorAt(0);
         }
         if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 1;
             BattleCreateYesNoCursorAt(1);
@@ -7035,13 +7035,13 @@ static void Cmd_yesnobox(void)
         if (JOY_NEW(B_BUTTON))
         {
             gBattleCommunication[CURSOR_POSITION] = 1;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             HandleBattleWindow(YESNOBOX_X_Y, WINDOW_CLEAR);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             HandleBattleWindow(YESNOBOX_X_Y, WINDOW_CLEAR);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
@@ -7232,7 +7232,7 @@ static void Cmd_drawlvlupbox(void)
         if (gMain.newKeys != 0 || RECORDED_WILD_BATTLE)
         {
             // Draw page 2 of level up box
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DrawLevelUpWindow2();
             CopyWindowToVram(B_WIN_LEVEL_UP_BOX, COPYWIN_GFX);
             gBattleScripting.drawlvlupboxState++;
@@ -7242,7 +7242,7 @@ static void Cmd_drawlvlupbox(void)
         if (gMain.newKeys != 0 || RECORDED_WILD_BATTLE)
         {
             // Close level up box
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             HandleBattleWindow(18, 7, 29, 19, WINDOW_BG1 | WINDOW_CLEAR);
             gBattleScripting.drawlvlupboxState++;
         }
@@ -12272,21 +12272,21 @@ static void Cmd_trygivecaughtmonnick(void)
     case POSTCATCH_HANDLE_INPUT:
         if (PostCatchMenuConsumeDpadInput(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] > 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyPostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION]--;
             BattleCreatePostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
         }
         else if (PostCatchMenuConsumeDpadInput(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] < POSTCATCH_MENU_COUNT - 1)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyPostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION]++;
             BattleCreatePostCatchMenuCursorAt(gBattleCommunication[CURSOR_POSITION]);
         }
         if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ClearPostCatchMenu();
             switch (gBattleCommunication[CURSOR_POSITION])
             {
@@ -12306,7 +12306,7 @@ static void Cmd_trygivecaughtmonnick(void)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ClearPostCatchMenu();
             gBattleCommunication[POSTCATCH_ACTION_SELECTION] = POSTCATCH_ACTION_NONE;
             gBattleCommunication[MULTIUSE_STATE] = POSTCATCH_DONE;
@@ -16595,14 +16595,14 @@ void BS_CatchOrNot(void)
     case 1:
         if (JOY_NEW(DPAD_UP) && gBattleCommunication[CURSOR_POSITION] != 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyCatchOrNotCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 0;
             BattleCreateCatchOrNotCursorAt(0);
         }
         if (JOY_NEW(DPAD_DOWN) && gBattleCommunication[CURSOR_POSITION] == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BattleDestroyCatchOrNotCursorAt(gBattleCommunication[CURSOR_POSITION]);
             gBattleCommunication[CURSOR_POSITION] = 1;
             BattleCreateCatchOrNotCursorAt(1);
@@ -16610,13 +16610,13 @@ void BS_CatchOrNot(void)
         if (JOY_NEW(B_BUTTON))
         {
             gBattleCommunication[CURSOR_POSITION] = 1;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             HandleBattleWindow(CATCH_OR_NOT_X_Y, WINDOW_CLEAR);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             HandleBattleWindow(CATCH_OR_NOT_X_Y, WINDOW_CLEAR);
             gBattlescriptCurrInstr = cmd->nextInstr;
         }

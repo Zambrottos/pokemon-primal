@@ -764,7 +764,7 @@ static void Task_PokegearMainMenu(u8 taskId)
 {
     if (JOY_NEW(DPAD_UP))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sPokegear->cursorPos = GetPreviousSelectableApp(sPokegear->cursorPos);
         DrawMainButtons(FALSE);
         DrawMainText();
@@ -772,7 +772,7 @@ static void Task_PokegearMainMenu(u8 taskId)
     }
     else if (JOY_NEW(DPAD_DOWN))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sPokegear->cursorPos = GetNextSelectableApp(sPokegear->cursorPos);
         DrawMainButtons(FALSE);
         DrawMainText();
@@ -788,14 +788,14 @@ static void Task_PokegearMainMenu(u8 taskId)
         }
         else
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sPokegear->mode = POKEGEAR_MODE_REGISTER;
             DrawHeaderText();
         }
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sPokegearLastCursor = sPokegear->cursorPos;
         switch (sPokegear->cursorPos)
         {
@@ -819,7 +819,7 @@ static void Task_PokegearMainMenu(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON | START_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_PokegearTurnOff;
     }
@@ -831,7 +831,7 @@ static void Task_PokegearRegisterApp(u8 taskId)
 
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sPokegear->mode = POKEGEAR_MODE_MAIN;
         DrawHeaderText();
         return;
@@ -848,7 +848,7 @@ static void Task_PokegearRegisterApp(u8 taskId)
     else
         return;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     RegisterPokegearApp(sPokegear->cursorPos, slot);
     sPokegear->mode = POKEGEAR_MODE_MAIN;
     DrawHeaderText();

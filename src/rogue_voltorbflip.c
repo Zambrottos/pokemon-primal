@@ -857,7 +857,7 @@ static void Task_VoltorbFlipWaitForKeyPress(u8 taskId)
     {
         if(sVoltorbFlipState->cursorWriteValue > 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             --sVoltorbFlipState->cursorWriteValue;
             DrawNoteTiles();
         }
@@ -866,7 +866,7 @@ static void Task_VoltorbFlipWaitForKeyPress(u8 taskId)
     {
         if(sVoltorbFlipState->cursorWriteValue < CARD_VALUE_COUNT)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ++sVoltorbFlipState->cursorWriteValue;
             DrawNoteTiles();
         }

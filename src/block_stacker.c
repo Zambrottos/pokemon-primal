@@ -1960,7 +1960,7 @@ static void HandleInput(void)
         else if (JOY_NEW(B_BUTTON))
         {
             if (sBlockStacker->exitToggle == 0) {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sBlockStacker->state = STACKER_START_EXIT;
             }
         }
@@ -2013,7 +2013,7 @@ static void HandleInput2(void)
     {
         if (sBlockStacker->YesNo == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sBlockStacker->YesNo = 1; // No
             gSprites[sBlockStacker->YesSpriteId].oam.tileNum += 32;
             gSprites[sBlockStacker->NoSpriteId].oam.tileNum -= 32;
@@ -2024,7 +2024,7 @@ static void HandleInput2(void)
     {
         if (sBlockStacker->YesNo == 1)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sBlockStacker->YesNo = 0; // Yes
             gSprites[sBlockStacker->YesSpriteId].oam.tileNum -= 32;
             gSprites[sBlockStacker->NoSpriteId].oam.tileNum += 32;

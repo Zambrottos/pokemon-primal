@@ -2583,7 +2583,7 @@ static void ShiftData(u8 direction)
     
     if (direction == 1) // Right
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (sDerby->MenuPosition >= DERBY_RACER_6)
         {
             sDerby->MenuPosition = DERBY_RACER_1;
@@ -2595,7 +2595,7 @@ static void ShiftData(u8 direction)
     }
     else if (direction == 0) // Left
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (sDerby->MenuPosition <= DERBY_RACER_1)
         {
             sDerby->MenuPosition = DERBY_RACER_6;
@@ -2612,13 +2612,13 @@ static void HandleInput(void)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sDerby->state = DERBY_STATE_BET_2_START;
     }
     else if (JOY_NEW(B_BUTTON))
     {
         if (sDerby->exitToggle == 0) {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sDerby->state = DERBY_STATE_START_EXIT;
         }
     }
@@ -2874,7 +2874,7 @@ static void HandleInput2(void)
     else if (JOY_NEW(B_BUTTON))
     {
         if (sDerby->exitToggle == 0) {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sDerby->Bet = 0;
         sDerby->PotentialWin = 0;
         SetBetDigits(0);

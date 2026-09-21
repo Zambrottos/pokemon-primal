@@ -1271,7 +1271,7 @@ static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListM
 {
     if (onInit != TRUE)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         ShakeBagSprite();
     }
     if (gBagMenu->toSwapPos == NOT_SWAPPING)
@@ -1600,7 +1600,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                     ListMenuGetScrollAndRow(tListTaskId, scrollPos, cursorPos);
                     if ((*scrollPos + *cursorPos) != gBagMenu->numItemStacks[gBagPosition.pocket] - 1)
                     {
-                        PlaySE(SE_SELECT);
+                        PlaySE(SE_CLICK);
                         StartItemSwap(taskId);
                     }
                 }
@@ -1626,7 +1626,7 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                     else
                         gSpecialVar_ItemId = tempItem.itemId;
 
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     BagDestroyPocketScrollArrowPair();
                     BagMenu_PrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
                     ListMenuGetScrollAndRow(data[0], scrollPos, cursorPos);
@@ -1652,14 +1652,14 @@ static void Task_BagMenu_HandleInput(u8 taskId)
                 PlaySE(SE_FAILURE);
                 break;
             }
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             gSpecialVar_ItemId = ITEM_NONE;
             gTasks[taskId].func = Task_FadeAndCloseBagMenu;
             break;
         default: // A_BUTTON
             {
                 struct ItemSlot itemSlot = GetBagItemIdAndQuantity(gBagPosition.pocket, listPosition);
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 BagDestroyPocketScrollArrowPair();
                 BagMenu_PrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
                 tListPosition = listPosition;
@@ -1717,12 +1717,12 @@ static u8 GetSwitchBagPocketDirection(void)
         return SWITCH_POCKET_NONE;
     if (JOY_NEW(DPAD_LEFT))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         return SWITCH_POCKET_LEFT;
     }
     if (JOY_NEW(DPAD_RIGHT))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         return SWITCH_POCKET_RIGHT;
     }
     return SWITCH_POCKET_NONE;
@@ -1916,7 +1916,7 @@ static void Task_HandleSwappingItemsInput(u8 taskId)
     {
         if (JOY_NEW(SELECT_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ListMenuGetScrollAndRow(tListTaskId, &gBagPosition.scrollPosition[gBagPosition.pocket], &gBagPosition.cursorPosition[gBagPosition.pocket]);
             DoItemSwap(taskId);
         }
@@ -1931,14 +1931,14 @@ static void Task_HandleSwappingItemsInput(u8 taskId)
             case LIST_NOTHING_CHOSEN:
                 break;
             case LIST_CANCEL:
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 if (JOY_NEW(A_BUTTON))
                     DoItemSwap(taskId);
                 else
                     CancelItemSwap(taskId);
                 break;
             default:
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 DoItemSwap(taskId);
                 break;
             }
@@ -2172,11 +2172,11 @@ static void Task_ItemContext_SingleRow(u8 taskId)
         case MENU_NOTHING_CHOSEN:
             break;
         case MENU_B_PRESSED:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sItemMenuActions[ACTION_CANCEL].func.void_u8(taskId);
             break;
         default:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sItemMenuActions[gBagMenu->contextMenuItemsPtr[selection]].func.void_u8(taskId);
             break;
         }
@@ -2194,7 +2194,7 @@ static void Task_ItemContext_MultipleRows(u8 taskId)
         {
             if (cursorPos > 0 && IsValidContextMenuPos(cursorPos - 2))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ChangeMenuGridCursorPosition(MENU_CURSOR_DELTA_NONE, MENU_CURSOR_DELTA_UP);
             }
         }
@@ -2202,7 +2202,7 @@ static void Task_ItemContext_MultipleRows(u8 taskId)
         {
             if (cursorPos < (gBagMenu->contextMenuNumItems - 2) && IsValidContextMenuPos(cursorPos + 2))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ChangeMenuGridCursorPosition(MENU_CURSOR_DELTA_NONE, MENU_CURSOR_DELTA_DOWN);
             }
         }
@@ -2210,7 +2210,7 @@ static void Task_ItemContext_MultipleRows(u8 taskId)
         {
             if ((cursorPos & 1) && IsValidContextMenuPos(cursorPos - 1))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ChangeMenuGridCursorPosition(MENU_CURSOR_DELTA_LEFT, MENU_CURSOR_DELTA_NONE);
             }
         }
@@ -2218,18 +2218,18 @@ static void Task_ItemContext_MultipleRows(u8 taskId)
         {
             if (!(cursorPos & 1) && IsValidContextMenuPos(cursorPos + 1))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ChangeMenuGridCursorPosition(MENU_CURSOR_DELTA_RIGHT, MENU_CURSOR_DELTA_NONE);
             }
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sItemMenuActions[gBagMenu->contextMenuItemsPtr[cursorPos]].func.void_u8(taskId);
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sItemMenuActions[ACTION_CANCEL].func.void_u8(taskId);
         }
     }
@@ -2355,13 +2355,13 @@ static void Task_ChooseHowManyToToss(u8 taskId)
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY);
         AskTossItems(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY);
         CancelToss(taskId);
     }
@@ -2584,7 +2584,7 @@ static void Task_RegisterUsingDpad(u8 taskId)
 
     if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         ItemMenu_Cancel(taskId);
         return;
     }
@@ -2593,7 +2593,7 @@ static void Task_RegisterUsingDpad(u8 taskId)
     if (i == 0)
         return;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     // register and refresh menu
     gSaveBlock1Ptr->registeredShortcutTypes[i - 1] = REGISTERED_SHORTCUT_ITEM;
     gSaveBlock1Ptr->registeredPokegearApps[i - 1] = POKEGEAR_APP_MAP;
@@ -2639,7 +2639,7 @@ static void Task_TossItemFromBag(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         if (!CanItemBeTossed(gSpecialVar_ItemId))
         {
@@ -2731,7 +2731,7 @@ static void Task_RemoveItemFromBag(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (!tRemoveItemIsToss || CanItemBeTossed(gSpecialVar_ItemId))
             RemoveBagItem(gSpecialVar_ItemId, tItemCount);
         DestroyListMenuTask(tListTaskId, scrollPos, cursorPos);
@@ -2874,7 +2874,7 @@ static void HandleErrorMessage(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         CloseItemMessage(taskId);
     }
 }
@@ -3178,14 +3178,14 @@ static void Task_KeyItemWheel(u8 taskId)
     {
         if (JOY_NEW(B_BUTTON) || JOY_NEW(SELECT_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             tState = 3; // destroy and unfreeze
             break;
         }
         i = DpadInputToRegisteredShortcutIndex(TRUE);
         if (i == 0 || data[i] == MAX_SPRITES)
             break;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         StartSpriteAffineAnim(&gSprites[data[i]], i + 4 - 1);
         tSelectedSprite = data[i];
         tState = 2; // wait for anim
@@ -3327,13 +3327,13 @@ static void Task_ChooseHowManyToSell(u8 taskId)
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY_WIDE);
         DisplaySellItemPriceAndConfirm(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BagMenu_PrintCursor(tListTaskId, COLORID_NORMAL);
         RemoveMoneyWindow();
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY_WIDE);
@@ -3375,7 +3375,7 @@ static void WaitAfterItemSell(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         RemoveMoneyWindow();
         CloseItemMessage(taskId);
     }
@@ -3412,13 +3412,13 @@ static void Task_ChooseHowManyToDeposit(u8 taskId)
     }
     else if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY);
         TryDepositItem(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         PrintItemDescription(tListPosition);
         BagMenu_PrintCursor(tListTaskId, COLORID_NORMAL);
         BagMenu_RemoveWindow(ITEMWIN_QUANTITY);
@@ -3462,7 +3462,7 @@ static void WaitDepositErrorMessage(u8 taskId)
 
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         PrintItemDescription(tListPosition);
         BagMenu_PrintCursor(tListTaskId, COLORID_NORMAL);
         ReturnToItemList(taskId);
@@ -3529,19 +3529,19 @@ static void Task_WallyTutorialBagMenu(u8 taskId)
         switch (tTimer)
         {
         case WALLY_BAG_DELAY * 1:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             SwitchBagPocket(taskId, MENU_CURSOR_DELTA_RIGHT, FALSE);
             tTimer++;
             break;
         case WALLY_BAG_DELAY * 2:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BagMenu_PrintCursor(tListTaskId, COLORID_GRAY_CURSOR);
             gSpecialVar_ItemId = ITEM_POKE_BALL;
             OpenContextMenu(taskId);
             tTimer++;
             break;
         case WALLY_BAG_DELAY * 3:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             RemoveContextWindow();
             DestroyListMenuTask(tListTaskId, 0, 0);
             RestoreBagAfterWallyTutorial();

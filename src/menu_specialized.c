@@ -298,7 +298,7 @@ u8 MailboxMenu_CreateList(struct PlayerPCItemPageStruct *page)
 static void MailboxMenu_MoveCursorFunc(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
     if (onInit != TRUE)
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 }
 
 void MailboxMenu_AddScrollArrows(struct PlayerPCItemPageStruct *page)
@@ -869,7 +869,7 @@ static void MoveRelearnerMenuLoadContestMoveDescription(u32 chosenMove)
 static void MoveRelearnerCursorCallback(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
     if (onInit != TRUE)
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
     MoveRelearnerLoadBattleMoveDescription(itemIndex);
     MoveRelearnerMenuLoadContestMoveDescription(itemIndex);
 }

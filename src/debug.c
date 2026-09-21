@@ -1343,7 +1343,7 @@ static void DebugTask_HandleMenuInput_General(u8 taskId)
             return;
 
         option = options[input];
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (option.action != NULL)
         {
             if (IsSubMenuAction(option.action))
@@ -1371,7 +1371,7 @@ static void DebugTask_HandleMenuInput_General(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (Debug_GetCurrentCallbackMenu() != NULL && Debug_RemoveCallbackMenu() != 0)
         {
             Debug_DestroyMenu(taskId);
@@ -1499,7 +1499,7 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, LAST_MAP_GROUP, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, 3);
@@ -1528,7 +1528,7 @@ static void DebugAction_Util_Warp_SelectMapGroup(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -1539,7 +1539,7 @@ static void DebugAction_Util_Warp_SelectMap(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, max_value - 1, 3);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, (max_value >= 100) ? 3 : 2);
@@ -1565,7 +1565,7 @@ static void DebugAction_Util_Warp_SelectMap(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -1574,7 +1574,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (JOY_NEW(DPAD_UP))
         {
             gTasks[taskId].tInput += sPowersOfTen[gTasks[taskId].tDigit];
@@ -1606,7 +1606,7 @@ static void DebugAction_Util_Warp_SelectWarp(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -1731,7 +1731,7 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, WEATHER_NONE, WEATHER_COUNT - 1, 3);
 
         StringCopy(gStringVar2, gText_DigitIndicator[gTasks[taskId].tDigit]);
@@ -1753,7 +1753,7 @@ static void DebugAction_Util_Weather_SelectId(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -2035,7 +2035,7 @@ static void DebugAction_ChooseFromMap_Select(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         u32 previousInput = gTasks[taskId].tInput;
 
         do {
@@ -2079,7 +2079,7 @@ static void DebugAction_ChooseFromMap_Select(u8 taskId)
         DestroyListMenuTask(gTasks[taskId].tMenuTaskId, NULL, NULL);
         DestroyTask(taskId);
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         sDebugMenuListData->listId = 2;
         Debug_RemoveCallbackMenu();
         Debug_ShowMenu(DebugTask_HandleMenuInput_General, sDebugMenu_Actions_Trainers);
@@ -2156,7 +2156,7 @@ static void DebugAction_ChooseTrainerID_Select(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         u32 min = 1;
         u32 max = TRAINERS_COUNT - 1;
         if (gTasks[taskId].tSelection == TRAINERS_DEBUG_SELECTION_TRAINER2)
@@ -2187,7 +2187,7 @@ static void DebugAction_ChooseTrainerID_Select(u8 taskId)
 
     if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (gTasks[taskId].tInput != gTasks[taskId].tInitial)
         {
             sDebugMenuListData->data[3] = FALSE;
@@ -2394,12 +2394,12 @@ static void DebugAction_FlagsVars_FlagsSelect(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         FlagToggle(gTasks[taskId].tInput);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
         return;
     }
@@ -2451,7 +2451,7 @@ static void DebugAction_FlagsVars_Select(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_VARIABLES);
         ConvertIntToHexStringN(gStringVar2, gTasks[taskId].tInput, STR_CONV_MODE_LEFT_ALIGN, 4);
@@ -2472,7 +2472,7 @@ static void DebugAction_FlagsVars_Select(u8 taskId)
     {
         gTasks[taskId].tDigit = 0;
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_VARIABLES);
         ConvertIntToHexStringN(gStringVar2, gTasks[taskId].tInput, STR_CONV_MODE_LEFT_ALIGN, 4);
@@ -2492,7 +2492,7 @@ static void DebugAction_FlagsVars_Select(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
         return;
     }
@@ -2531,19 +2531,19 @@ static void DebugAction_FlagsVars_SetValue(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         VarSet(gTasks[taskId].tInput, gTasks[taskId].data[6]);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
         return;
     }
 
     if (JOY_NEW(DPAD_ANY) || JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         ConvertIntToDecimalStringN(gStringVar1, gTasks[taskId].tInput, STR_CONV_MODE_LEADING_ZEROS, DEBUG_NUMBER_DIGITS_VARIABLES);
         ConvertIntToHexStringN(gStringVar2, gTasks[taskId].tInput, STR_CONV_MODE_LEFT_ALIGN, 4);
@@ -2794,7 +2794,7 @@ static void DebugAction_FlagsVars_BagUseOnOff(u8 taskId)
 #if B_VAR_NO_BAG_USE < VARS_START || B_VAR_NO_BAG_USE > VARS_END
     Debug_DestroyMenu_Full_Script(taskId, Debug_VarsNotSetBattleConfigMessage);
 #else
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     VarSet(B_VAR_NO_BAG_USE, (VarGet(B_VAR_NO_BAG_USE) + 1) % 3);
 #endif
 }
@@ -2886,7 +2886,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 1, ITEMS_COUNT - 1, DEBUG_NUMBER_DIGITS_ITEMS);
         Debug_Display_ItemInfo(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
         DestroyItemIcon(taskId);
@@ -2908,7 +2908,7 @@ static void DebugAction_Give_Item_SelectId(u8 taskId)
     {
         DestroyItemIcon(taskId);
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -2919,7 +2919,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 1, MAX_BAG_ITEM_CAPACITY, MAX_ITEM_DIGITS);
         Debug_Display_ItemQuantity(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
@@ -2936,7 +2936,7 @@ static void DebugAction_Give_Item_SelectQuantity(u8 taskId)
     {
         DestroyItemIcon(taskId);
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -3123,7 +3123,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 1, NUM_SPECIES - 1, DEBUG_NUMBER_DIGITS_ITEMS);
         u32 species = gTasks[taskId].tInput;
         if (!IsSpeciesEnabled(species))
@@ -3164,7 +3164,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
             SetMonData(&egg, MON_DATA_IS_SHINY, &isShiny);
             GiveCapturedMonToPlayer(&egg);
         }
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
@@ -3172,7 +3172,7 @@ static void DebugAction_Give_Pokemon_SelectId(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
@@ -3195,7 +3195,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 1, MAX_LEVEL, 3);
         Debug_Display_Level(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
@@ -3224,7 +3224,7 @@ static void DebugAction_Give_Pokemon_SelectLevel(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
@@ -3249,7 +3249,7 @@ static void DebugAction_Give_Pokemon_SelectShiny(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tInput ^= JOY_NEW(DPAD_UP | DPAD_DOWN) > 0;
         Debug_Display_TrueFalse(gTasks[taskId].tInput, gTasks[taskId].tSubWindowId, sDebugText_PokemonShiny);
     }
@@ -3264,7 +3264,7 @@ static void DebugAction_Give_Pokemon_SelectShiny(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3286,7 +3286,7 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         if (JOY_NEW(DPAD_UP))
         {
@@ -3319,7 +3319,7 @@ static void DebugAction_Give_Pokemon_SelectNature(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3341,7 +3341,7 @@ static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         if (JOY_NEW(DPAD_UP))
         {
@@ -3379,7 +3379,7 @@ static void DebugAction_Give_Pokemon_SelectAbility(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3398,7 +3398,7 @@ static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         if (JOY_NEW(DPAD_UP))
         {
@@ -3428,7 +3428,7 @@ static void DebugAction_Give_Pokemon_SelectTeraType(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3443,7 +3443,7 @@ static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, MAX_DYNAMAX_LEVEL, 2);
         Debug_Display_DynamaxLevel(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
     }
@@ -3458,7 +3458,7 @@ static void DebugAction_Give_Pokemon_SelectDynamaxLevel(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         FreeMonIconPalettes();
         FreeAndDestroyMonIconSprite(&gSprites[gTasks[taskId].tSpriteId]);
@@ -3480,7 +3480,7 @@ static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tInput ^= JOY_NEW(DPAD_UP | DPAD_DOWN) > 0;
         Debug_Display_GigantamaxFactor(gTasks[taskId].tInput, gTasks[taskId].tSubWindowId);
     }
@@ -3495,7 +3495,7 @@ static void DebugAction_Give_Pokemon_SelectGigantamaxFactor(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3505,7 +3505,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_IVS, 3);
         Debug_Display_StatInfo(sDebugText_IVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId, MAX_PER_STAT_IVS);
     }
@@ -3538,7 +3538,7 @@ static void DebugAction_Give_Pokemon_SelectIVs(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3582,7 +3582,7 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
 
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, MAX_PER_STAT_EVS, 4);
         Debug_Display_StatInfo(sDebugText_EVs, gTasks[taskId].tIterator, gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId, MAX_PER_STAT_EVS);
     }
@@ -3628,7 +3628,7 @@ static void DebugAction_Give_Pokemon_SelectEVs(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3638,7 +3638,7 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 0, MOVES_COUNT, 4);
 
         Debug_Display_MoveInfo(gTasks[taskId].tInput, gTasks[taskId].tIterator, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
@@ -3676,7 +3676,7 @@ static void DebugAction_Give_Pokemon_Move(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Free(sDebugMonData);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -3830,7 +3830,7 @@ static void DebugAction_Give_Decoration_SelectId(u8 taskId)
 {
     if (JOY_NEW(DPAD_ANY))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Debug_HandleInput_Numeric(taskId, 1, NUM_DECORATIONS, DEBUG_NUMBER_DIGITS_ITEMS);
         Debug_Display_DecorationInfo(gTasks[taskId].tInput, gTasks[taskId].tDigit, gTasks[taskId].tSubWindowId);
         DestroyDecorationIcon(taskId);
@@ -3849,7 +3849,7 @@ static void DebugAction_Give_Decoration_SelectId(u8 taskId)
     {
         DestroyDecorationIcon(taskId);
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugAction_DestroyExtraWindow(taskId);
     }
 }
@@ -4184,7 +4184,7 @@ static void DebugAction_Sound_SE_SelectId(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         m4aSongNumStop(gTasks[taskId].tCurrentSong);
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -4249,7 +4249,7 @@ static void DebugAction_Sound_MUS_SelectId(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // m4aSongNumStop(gTasks[taskId].tCurrentSong);   //Uncomment if music should stop after leaving menu
         DebugAction_DestroyExtraWindow(taskId);
     }
@@ -4957,13 +4957,13 @@ static void DebugNativeStep_Party_SetFriendshipSelect(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tFriendship = gTasks[taskId].tInput;
         SetMonData(&gPlayerParty[gTasks[taskId].tPartyId], MON_DATA_FRIENDSHIP, &gTasks[taskId].tInput);
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugNativeStep_CloseDebugWindow(taskId);
         return;
     }
@@ -5022,14 +5022,14 @@ static void DebugNativeStep_Party_SetPokerusDaysLeftSelect(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         SetMonData(&gPlayerParty[gTasks[taskId].tPartyId], MON_DATA_POKERUS_DAYS_LEFT, &gTasks[taskId].tInput);
         DebugNativeStep_CloseDebugWindow(taskId);
         return;
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugNativeStep_CloseDebugWindow(taskId);
         return;
     }
@@ -5052,7 +5052,7 @@ static void DebugNativeStep_Party_SetPokerusStrainSelect(u8 taskId)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tStrain = gTasks[taskId].tInput;
         SetMonData(&gPlayerParty[gTasks[taskId].tPartyId], MON_DATA_POKERUS_STRAIN, &gTasks[taskId].tInput);
         gTasks[taskId].tInput = GetMonData(&gPlayerParty[gTasks[taskId].tPartyId], MON_DATA_POKERUS_DAYS_LEFT);
@@ -5062,7 +5062,7 @@ static void DebugNativeStep_Party_SetPokerusStrainSelect(u8 taskId)
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DebugNativeStep_CloseDebugWindow(taskId);
         return;
     }

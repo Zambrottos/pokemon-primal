@@ -239,7 +239,7 @@ static void FieldUpdateRegionMap(void)
                 {
                     if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY)
                     {
-                        PlaySE(SE_SELECT);
+                        PlaySE(SE_CLICK);
                         SetFlyDestination(&sFieldRegionMapHandler->regionMap);
                         gSkipShowMonAnim = TRUE;
                         sFieldRegionMapHandler->choseFlyLocation = TRUE;
@@ -260,7 +260,7 @@ static void FieldUpdateRegionMap(void)
                     SetRegionMapFlyDestinationIconsVisible(!sFieldRegionMapHandler->trackerMode
                                                            && sFieldRegionMapHandler->canFly);
                     SetRegionMapRoamerIconsVisible(sFieldRegionMapHandler->trackerMode);
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     PrintTitleWindowText();
                 }
                 break;

@@ -1690,11 +1690,11 @@ static void Task_HandlePokedexInput(u8 taskId)
             sPokedexView->menuIsOpen = TRUE;
             sPokedexView->menuCursorPos = 0;
             gTasks[taskId].func = Task_HandlePokedexStartMenuInput;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_NEW(SELECT_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
             gTasks[taskId].tLoadScreenTaskId = LoadSearchMenu();
             sPokedexView->screenSwitchState = 0;
@@ -1774,17 +1774,17 @@ static void Task_HandlePokedexStartMenuInput(u8 taskId)
         {
             sPokedexView->menuIsOpen = FALSE;
             gTasks[taskId].func = Task_HandlePokedexInput;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_REPEAT(DPAD_UP) && sPokedexView->menuCursorPos != 0)
         {
             sPokedexView->menuCursorPos--;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->menuCursorPos < 3)
         {
             sPokedexView->menuCursorPos++;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
     }
 }
@@ -1896,7 +1896,7 @@ static void Task_HandleSearchResultsInput(u8 taskId)
             sPokedexView->menuIsOpen = TRUE;
             sPokedexView->menuCursorPos = 0;
             gTasks[taskId].func = Task_HandleSearchResultsStartMenuInput;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_NEW(SELECT_BUTTON))
         {
@@ -1979,17 +1979,17 @@ static void Task_HandleSearchResultsStartMenuInput(u8 taskId)
         {
             sPokedexView->menuIsOpen = FALSE;
             gTasks[taskId].func = Task_HandleSearchResultsInput;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_REPEAT(DPAD_UP) && sPokedexView->menuCursorPos)
         {
             sPokedexView->menuCursorPos--;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (JOY_REPEAT(DPAD_DOWN) && sPokedexView->menuCursorPos < 4)
         {
             sPokedexView->menuCursorPos++;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
     }
 }
@@ -5316,7 +5316,7 @@ static void Task_HandleSearchMenuInput(u8 taskId)
 
     if (JOY_NEW(DPAD_LEFT) && movementMap[gTasks[taskId].tMenuItem][0] != 0xFF)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tMenuItem = movementMap[gTasks[taskId].tMenuItem][0];
         HighlightSelectedSearchMenuItem(gTasks[taskId].tTopBarItem, gTasks[taskId].tMenuItem);
         CopyWindowToVram(0, COPYWIN_GFX);
@@ -5324,7 +5324,7 @@ static void Task_HandleSearchMenuInput(u8 taskId)
     }
     if (JOY_NEW(DPAD_RIGHT) && movementMap[gTasks[taskId].tMenuItem][1] != 0xFF)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tMenuItem = movementMap[gTasks[taskId].tMenuItem][1];
         HighlightSelectedSearchMenuItem(gTasks[taskId].tTopBarItem, gTasks[taskId].tMenuItem);
         CopyWindowToVram(0, COPYWIN_GFX);
@@ -5332,7 +5332,7 @@ static void Task_HandleSearchMenuInput(u8 taskId)
     }
     if (JOY_NEW(DPAD_UP) && movementMap[gTasks[taskId].tMenuItem][2] != 0xFF)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tMenuItem = movementMap[gTasks[taskId].tMenuItem][2];
         HighlightSelectedSearchMenuItem(gTasks[taskId].tTopBarItem, gTasks[taskId].tMenuItem);
         CopyWindowToVram(0, COPYWIN_GFX);
@@ -5340,7 +5340,7 @@ static void Task_HandleSearchMenuInput(u8 taskId)
     }
     if (JOY_NEW(DPAD_DOWN) && movementMap[gTasks[taskId].tMenuItem][3] != 0xFF)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gTasks[taskId].tMenuItem = movementMap[gTasks[taskId].tMenuItem][3];
         HighlightSelectedSearchMenuItem(gTasks[taskId].tTopBarItem, gTasks[taskId].tMenuItem);
         CopyWindowToVram(0, COPYWIN_GFX);
@@ -5478,7 +5478,7 @@ static void Task_HandleSearchParameterInput(u8 taskId)
         }
         if (moved)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             EraseAndPrintSearchTextBox(texts[*cursorPos + *scrollOffset].description);
             CopyWindowToVram(0, COPYWIN_GFX);
         }
@@ -5504,7 +5504,7 @@ static void Task_HandleSearchParameterInput(u8 taskId)
         }
         if (moved)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             EraseAndPrintSearchTextBox(texts[*cursorPos + *scrollOffset].description);
             CopyWindowToVram(0, COPYWIN_GFX);
         }

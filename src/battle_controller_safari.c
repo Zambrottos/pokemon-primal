@@ -119,7 +119,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
 {
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         switch (gActionSelectionCursor[battler])
         {
@@ -142,7 +142,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
     {
         if (gActionSelectionCursor[battler] & 1)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 1;
             ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
@@ -152,7 +152,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
     {
         if (!(gActionSelectionCursor[battler] & 1))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 1;
             ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
@@ -162,7 +162,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
     {
         if (gActionSelectionCursor[battler] & 2)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 2;
             ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
@@ -172,7 +172,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
     {
         if (!(gActionSelectionCursor[battler] & 2))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
             gActionSelectionCursor[battler] ^= 2;
             ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);
@@ -180,7 +180,7 @@ static void HandleInputChooseAction(enum BattlerId battler)
     }
     else if (B_QUICK_MOVE_CURSOR_TO_RUN && JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         ActionSelectionDestroyCursorAt(gActionSelectionCursor[battler]);
         gActionSelectionCursor[battler] = 3;
         ActionSelectionCreateCursorAt(gActionSelectionCursor[battler], 0);

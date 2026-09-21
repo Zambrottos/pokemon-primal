@@ -544,7 +544,7 @@ static void Task_HandleConfirmStarterInput(u8 taskId)
         break;
     case 1:  // NO
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         spriteId = gTasks[taskId].tPkmnSpriteId;
         FreeOamMatrix(gSprites[spriteId].oam.matrixNum);
         FreeAndDestroyMonPicSprite(spriteId);

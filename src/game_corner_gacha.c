@@ -2686,7 +2686,7 @@ static void UpdateWagerDigit(int direction)
 
         // Otherwise, simply increase the digit by 1
         wagerDigits[place]++;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
                 
         // Ensure the new wager doesn't exceed max available coins
         newWager = (wagerDigits[0] * 1000) + (wagerDigits[1] * 100) + (wagerDigits[2] * 10) + wagerDigits[3];
@@ -2702,7 +2702,7 @@ static void UpdateWagerDigit(int direction)
             // Decrease the digit by 1
             wagerDigits[place]--;
             sGacha->wager = (wagerDigits[0] * 1000) + (wagerDigits[1] * 100) + (wagerDigits[2] * 10) + wagerDigits[3];
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
     }
 
@@ -2758,12 +2758,12 @@ static void MoveCursor(int direction)
         if (direction == 1 && curX < 231)
         {
             destX = curX + 8;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         else if (direction == 3 && curX > 207)
         {
             destX = curX - 8;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         
         cursorSprite->x = destX;

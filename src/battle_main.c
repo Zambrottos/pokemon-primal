@@ -2618,7 +2618,7 @@ static void AskRecordBattle(void)
             if (gBattleCommunication[CURSOR_POSITION] != 0)
             {
                 // Moved cursor onto Yes
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
                 gBattleCommunication[CURSOR_POSITION] = 0;
                 BattleCreateYesNoCursorAt(0);
@@ -2629,7 +2629,7 @@ static void AskRecordBattle(void)
             if (gBattleCommunication[CURSOR_POSITION] == 0)
             {
                 // Moved cursor onto No
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 BattleDestroyYesNoCursorAt(gBattleCommunication[CURSOR_POSITION]);
                 gBattleCommunication[CURSOR_POSITION] = 1;
                 BattleCreateYesNoCursorAt(1);
@@ -2637,7 +2637,7 @@ static void AskRecordBattle(void)
         }
         else if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             if (gBattleCommunication[CURSOR_POSITION] == 0)
             {
                 // Selected Yes
@@ -2653,7 +2653,7 @@ static void AskRecordBattle(void)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             gBattleCommunication[MULTIUSE_STATE]++;
         }
         break;

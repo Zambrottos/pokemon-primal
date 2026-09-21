@@ -1329,7 +1329,7 @@ static void Task_EasyChatScreen(u8 taskId)
         }
         else if (funcId != ECFUNC_NONE)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             StartEasyChatFunction(funcId);
             tState++; // MAINSTATE_RUN_FUNC
         }

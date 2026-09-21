@@ -216,7 +216,7 @@ static void Task_HighlightSelectedMainMenuItem(u8);
 static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8);
 static void Task_NewGameBirchSpeech_ChooseGender(u8);
 static void NewGameBirchSpeech_ShowGenderMenu(u8);
-static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void);
+static s8 NewGameBirchSpeech_ProcessMenuInput(void);
 static void NewGameBirchSpeech_ClearGenderWindow(u8, u8);
 static void Task_NewGameBirchSpeech_WhatsYourName(u8);
 static void Task_NewGameBirchSpeech_WaitForWhatsYourNameToPrint(u8);
@@ -918,14 +918,14 @@ static bool8 HandleMainMenuInput(u8 taskId)
 
     if (JOY_NEW(A_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         IsWirelessAdapterConnected();   // why bother calling this here? debug? Task_HandleMainMenuAPressed will check too
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
         gTasks[taskId].func = Task_HandleMainMenuAPressed;
     }
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_WHITEALPHA);
         SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(0, DISPLAY_WIDTH));
         SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(0, DISPLAY_HEIGHT));
@@ -1182,7 +1182,7 @@ static void Task_DisplayMainMenuInvalidActionError(u8 taskId)
     case 3:
         if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             gTasks[taskId].func = Task_HandleMainMenuBPressed;
         }
@@ -1563,14 +1563,13 @@ static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8 taskId)
 
 static void Task_NewGameBirchSpeech_ChooseGender(u8 taskId)
 {
-    enum Gender gender = NewGameBirchSpeech_ProcessGenderMenuInput();
+    enum Gender gender = NewGameBirchSpeech_ProcessMenuInput();
     enum Gender highlightedGender;
 
     switch (gender)
     {
     case MALE:
     case FEMALE:
-        PlaySE(SE_SELECT);
         gSaveBlock2Ptr->playerGender = gender;
         gTasks[taskId].tPlayerGender = gender;
         NewGameBirchSpeech_StartGenderConfirmation(taskId);
@@ -1703,17 +1702,20 @@ static void Task_NewGameBirchSpeech_CreateNameYesNo(u8 taskId)
 
 static void Task_NewGameBirchSpeech_ProcessNameYesNoMenu(u8 taskId)
 {
-    switch (Menu_ProcessInputNoWrapClearOnChoose())
+    s8 result = NewGameBirchSpeech_ProcessMenuInput();
+
+    if (result != MENU_NOTHING_CHOSEN)
+        EraseYesNoWindow();
+
+    switch (result)
     {
     case 0:
-        PlaySE(SE_SELECT);
         gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
         gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeOut;
         break;
     case MENU_B_PRESSED:
     case 1:
-        PlaySE(SE_SELECT);
         gSprites[gTasks[taskId].tPlayerSpriteId].oam.objMode = ST_OAM_OBJ_BLEND;
         NewGameBirchSpeech_StartFadeOutTarget1InTarget2(taskId, NEW_GAME_SPEECH_FADE_DELAY);
         gTasks[taskId].func = Task_NewGameBirchSpeech_WaitForPlayerFadeOutToGenderChoice;
@@ -2156,9 +2158,32 @@ static void NewGameBirchSpeech_ShowGenderMenu(u8 taskId)
     CopyWindowToVram(1, COPYWIN_FULL);
 }
 
-static s8 NewGameBirchSpeech_ProcessGenderMenuInput(void)
+static s8 NewGameBirchSpeech_ProcessMenuInput(void)
 {
-    return Menu_ProcessInputNoWrap();
+    u8 oldPos = Menu_GetCursorPos();
+
+    if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_CLICK);
+        return oldPos;
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_CLICK);
+        return MENU_B_PRESSED;
+    }
+    else if (JOY_NEW(DPAD_UP))
+    {
+        if (oldPos != Menu_MoveCursorNoWrapAround(-1))
+            PlaySE(SE_CLICK);
+    }
+    else if (JOY_NEW(DPAD_DOWN))
+    {
+        if (oldPos != Menu_MoveCursorNoWrapAround(1))
+            PlaySE(SE_CLICK);
+    }
+
+    return MENU_NOTHING_CHOSEN;
 }
 
 void NewGameBirchSpeech_SetDefaultPlayerName(u8 nameId)

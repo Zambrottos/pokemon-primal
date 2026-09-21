@@ -754,7 +754,7 @@ static void MoveCursor(s16 delta)
     if (sAchievementCursor == oldCursor && sAchievementTop == oldTop)
         return;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     if (sAchievementTop != oldTop)
         DrawList();
     else
@@ -777,7 +777,7 @@ static void Task_AchievementsMenu(u8 taskId)
         MoveCursor(ACHIEVEMENTS_VISIBLE_ROWS);
     else if (JOY_NEW(B_BUTTON))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = ExitAchievementsMenu;
     }

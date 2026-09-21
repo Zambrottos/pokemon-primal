@@ -676,7 +676,7 @@ static void Task_ChooseAnswer(u8 taskId)
         if (tNoBButton)
             return;
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gSpecialVar_Result = MULTI_B_PRESSED;
         break;
     default:

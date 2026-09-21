@@ -1547,7 +1547,7 @@ static bool8 KeyboardKeyHandler_OK(u8 input)
     TryStartButtonFlash(BUTTON_OK, TRUE, FALSE);
     if (input == INPUT_A_BUTTON)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(sNamingScreen->templateNum == NAMING_SCREEN_PLAYER ? SE_CLICK : SE_CLICK);
         sNamingScreen->state = STATE_PRESSED_OK;
         return TRUE;
     }
@@ -1729,6 +1729,10 @@ static void HandleDpadMovement(struct Task *task)
         if (cursorY > KBROW_COUNT - 1)
             cursorY = 0;
     }
+
+    if (input != INPUT_NONE)
+       PlaySE(SE_CLICK);
+
     SetCursorPos(cursorX, cursorY);
 }
 
@@ -1882,7 +1886,7 @@ static bool8 AddTextCharacter(void)
     BufferCharacter(GetCharAtKeyboardPos(x, y));
     DrawTextEntry();
     CopyBgTilemapBufferToVram(3);
-    PlaySE(SE_SELECT);
+    PlaySE(sNamingScreen->templateNum == NAMING_SCREEN_PLAYER ? SE_CLICK : SE_CLICK);
 
     if (GetPreviousTextCaretPosition() != sNamingScreen->template->maxChars - 1)
         return FALSE;

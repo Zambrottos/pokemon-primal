@@ -865,7 +865,7 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_WAIT_FOR_A_BUTTON:
         if (JOY_NEW(A_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             sMoveRelearnerStruct->state = MENU_STATE_FADE_AND_RETURN;
         }
         break;
@@ -916,18 +916,18 @@ static void HandleInput(void)
             if (!TryCycleRelearnerPage(direction))
                 break;
 
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
         }
         break;
     case LIST_CANCEL:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         RemoveScrollArrows();
         sMoveRelearnerStruct->state = MENU_STATE_PRINT_GIVE_UP_PROMPT;
         StringExpandPlaceholders(gStringVar4, gText_MoveRelearnerGiveUp);
         MoveRelearnerPrintMessage(gStringVar4);
         break;
     default:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         RemoveScrollArrows();
         sMoveRelearnerStruct->state = MENU_STATE_PRINT_TEACH_MOVE_PROMPT;
         StringCopy(gStringVar2, GetMoveName(itemId));

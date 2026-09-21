@@ -1496,7 +1496,7 @@ void Task_HandleChooseMonInput(u8 taskId)
         case START_BUTTON:
             if (sPartyMenuInternal->chooseHalf)
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 MoveCursorToConfirm();
             }
             break;
@@ -1542,7 +1542,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
         case PARTY_ACTION_MOVE_TUTOR:
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
                 TryTutorSelectedMon(taskId);
             }
@@ -1550,7 +1550,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
         case PARTY_ACTION_GIVE_MAILBOX_MAIL:
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
                 TryGiveMailToSelectedMon(taskId);
             }
@@ -1559,17 +1559,17 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
         case PARTY_ACTION_GIVE_PC_ITEM:
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
                 TryGiveItemOrMailToSelectedMon(taskId);
             }
             break;
         case PARTY_ACTION_SWITCH:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             SwitchSelectedMons(taskId);
             break;
         case PARTY_ACTION_CHOOSE_AND_CLOSE:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             Task_ClosePartyMenu(taskId);
             break;
         case PARTY_ACTION_MINIGAME:
@@ -1590,7 +1590,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             }
             else
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 gSelectedMonPartyId = partyId;
                 Task_ClosePartyMenu(taskId);
             }
@@ -1616,7 +1616,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             }*/
             else
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 gSelectedMonPartyId = GetPartyIdFromBattleSlot(partyId);
                 Task_ClosePartyMenu(taskId);
             }
@@ -1625,7 +1625,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
         default:
         case PARTY_ACTION_ABILITY_PREVENTS:
         case PARTY_ACTION_SWITCHING:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             Task_TryCreateSelectionWindow(taskId);
             break;
         }
@@ -1665,20 +1665,20 @@ static void HandleChooseMonCancel(u8 taskId, s8 *slotPtr)
         break;
     case PARTY_ACTION_SWITCH:
     case PARTY_ACTION_SOFTBOILED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         FinishTwoMonAction(taskId);
         break;
     case PARTY_ACTION_MINIGAME:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         CancelParticipationPrompt(taskId);
         break;
     case PARTY_ACTION_SEND_MON_TO_BOX:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gSelectedMonPartyId = PARTY_SIZE + 1;
         Task_ClosePartyMenu(taskId);
         break;
     default:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (DisplayCancelChooseMonYesNo(taskId) != TRUE)
         {
             if (!MenuHelpers_IsLinkActive())
@@ -1730,7 +1730,7 @@ static void Task_HandleCancelChooseMonYesNoInput(u8 taskId)
         Task_ClosePartyMenu(taskId);
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         Task_ReturnToChooseMonAfterText(taskId);
@@ -1796,7 +1796,7 @@ static void UpdateCurrentPartySelection(s8 *slotPtr, s8 movementDir)
 
     if (*slotPtr != newSlotId)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         AnimatePartySlot(newSlotId, 0);
         AnimatePartySlot(*slotPtr, 1);
     }
@@ -2192,7 +2192,7 @@ static void TryEnterMonForMinigame(u8 taskId, u8 slot)
 {
     if (IsMonAllowedInMinigame(slot) == TRUE)
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gSpecialVar_0x8004 = slot;
         Task_ClosePartyMenu(taskId);
     }
@@ -2230,7 +2230,7 @@ static void Task_HandleCancelParticipationYesNoInput(u8 taskId)
         Task_ClosePartyMenu(taskId);
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3090,7 +3090,7 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
         case MENU_NOTHING_CHOSEN:
             break;
         case MENU_B_PRESSED:
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[2]);
             if (sPartyMenuInternal->actions[sPartyMenuInternal->numActions - 1] >= MENU_FIELD_MOVES)
                 CursorCb_FieldMove(taskId);
@@ -3110,7 +3110,7 @@ static void Task_HandleSelectionMenuInput(u8 taskId)
 
 static void CursorCb_Summary(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     sPartyMenuInternal->exitCallback = CB2_ShowPokemonSummaryScreen;
     Task_ClosePartyMenu(taskId);
 }
@@ -3144,7 +3144,7 @@ static void CursorCb_Switch(u8 taskId)
     // Reset follower steps when the party leader is changed
     if (gPartyMenu.slotId == 0 || gPartyMenu.slotId2 == 0)
         gFollowerSteps = 0;
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gPartyMenu.action = PARTY_ACTION_SWITCH;
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
@@ -3428,7 +3428,7 @@ static void FinishTwoMonAction(u8 taskId)
 
 static void CursorCb_Cancel1(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     if (gPartyMenu.menuType == PARTY_MENU_TYPE_DAYCARE)
@@ -3440,7 +3440,7 @@ static void CursorCb_Cancel1(u8 taskId)
 
 static void CursorCb_Item(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_ITEM);
@@ -3452,7 +3452,7 @@ static void CursorCb_Item(u8 taskId)
 
 static void CursorCb_Pokedex(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     sPartyMenuInternal->exitCallback = CB2_OpenPartyPokedex;
     Task_ClosePartyMenu(taskId);
 }
@@ -3472,7 +3472,7 @@ static void CB2_ReturnToPartyMenuFromPokedex(void)
 
 static void CursorCb_Give(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     sPartyMenuInternal->exitCallback = CB2_SelectBagItemToGive;
     Task_ClosePartyMenu(taskId);
 }
@@ -3603,7 +3603,7 @@ static void Task_HandleSwitchItemsYesNoInput(u8 taskId)
         }
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1: // No
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3708,7 +3708,7 @@ static void CursorCb_TakeItem(u8 taskId)
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
      //Item prompts moved to TryTakeMonItem (Multi)
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     switch (TryTakeMonItem(mon))
@@ -3742,7 +3742,7 @@ static void CursorCb_Toss(u8 taskId)
         }
     } 
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     if (item == ITEM_NONE)
@@ -3804,7 +3804,7 @@ static void Task_HandleTossHeldItemYesNoInput(u8 taskId)
         gTasks[taskId].func = Task_TossHeldItem;
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3854,7 +3854,7 @@ static void Task_TossHeldItem(u8 taskId)
 
 static void CursorCb_Mail(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_MAIL);
@@ -3866,7 +3866,7 @@ static void CursorCb_Mail(u8 taskId)
 
 static void CursorCb_Read(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     sPartyMenuInternal->exitCallback = CB2_ReadHeldMail;
     Task_ClosePartyMenu(taskId);
 }
@@ -3884,7 +3884,7 @@ static void CB2_ReturnToPartyMenuFromReadingMail(void)
 
 static void CursorCb_TakeMail(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     DisplayPartyMenuMessage(gText_SendMailToPC, TRUE);
@@ -3917,7 +3917,7 @@ static void Task_HandleSendMailToPCYesNoInput(u8 taskId)
         }
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         DisplayPartyMenuMessage(gText_MailMessageWillBeLost, TRUE);
@@ -3965,7 +3965,7 @@ static void Task_HandleLoseMailMessageYesNoInput(u8 taskId)
         }
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
@@ -3987,7 +3987,7 @@ static void CursorCb_Cancel2(u8 taskId)
         }
     }
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, GetPartyMenuActionsType(mon));
@@ -4008,7 +4008,7 @@ static void CursorCb_Cancel2(u8 taskId)
 
 static void CursorCb_SendMon(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     if (TrySwitchInPokemon() == TRUE)
     {
@@ -4035,7 +4035,7 @@ static void CursorCb_Enter(u8 taskId)
     {
         if (gSelectedOrderFromParty[i] == 0)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             gSelectedOrderFromParty[i] = gPartyMenu.slotId + 1;
             DisplayPartyPokemonDescriptionText(i + PARTYBOX_DESC_FIRST, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
             if (i == (maxBattlers - 1))
@@ -4064,7 +4064,7 @@ static void CursorCb_NoEntry(u8 taskId)
     u8 maxBattlers;
     u8 i, j;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     maxBattlers = GetMaxBattleEntries();
@@ -4090,7 +4090,7 @@ static void CursorCb_NoEntry(u8 taskId)
 
 static void CursorCb_Store(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     Task_ClosePartyMenu(taskId);
 }
 
@@ -4113,7 +4113,7 @@ static void CursorCb_Register(u8 taskId)
         StringExpandPlaceholders(gStringVar4, gText_EggCantBeTradedNow);
         break;
     default:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Task_ClosePartyMenu(taskId);
         return;
     }
@@ -4144,7 +4144,7 @@ static void CursorCb_Trade1(u8 taskId)
     }
     else
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Task_ClosePartyMenu(taskId);
     }
 }
@@ -4167,7 +4167,7 @@ static void CursorCb_Trade2(u8 taskId)
         StringExpandPlaceholders(gStringVar4, gText_EggCantBeTradedNow);
         break;
     default: // CAN_TRADE_MON
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         GetMonNickname(&gPlayerParty[gPartyMenu.slotId], gStringVar1);
         StringExpandPlaceholders(gStringVar4, gJPText_AreYouSureYouWantToSpinTradeMon);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
@@ -4198,7 +4198,7 @@ static void Task_HandleSpinTradeYesNoInput(u8 taskId)
         Task_ClosePartyMenu(taskId);
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         Task_ReturnToChooseMonAfterText(taskId);
@@ -4211,7 +4211,7 @@ static void CursorCb_FieldMove(u8 taskId)
     u8 fieldMove = sPartyMenuInternal->actions[Menu_GetCursorPos()] - MENU_FIELD_MOVES;
     const struct MapHeader *mapHeader;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     if (gFieldMoveInfo[fieldMove].fieldMoveFunc == NULL)
         return;
 
@@ -4313,7 +4313,7 @@ static void Task_HandleFieldMoveExitAreaYesNoInput(u8 taskId)
         Task_ClosePartyMenu(taskId);
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         gFieldCallback2 = NULL;
@@ -5044,7 +5044,7 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
     if (CannotUseItemsInBattle(gSpecialVar_ItemId, mon))
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -5053,7 +5053,7 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
     {
         gBattleStruct->itemPartyIndex[gBattlerInMenuId] = GetPartyIdFromBattleSlot(gPartyMenu.slotId);
         gPartyMenuUseExitCallback = TRUE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         if (!IsItemFlute(gSpecialVar_ItemId))
             RemoveBagItem(gSpecialVar_ItemId, 1);
         ScheduleBgCopyTilemapToVram(2);
@@ -5063,7 +5063,7 @@ void ItemUseCB_BattleScript(u8 taskId, TaskFunc task)
 
 void ItemUseCB_BattleChooseMove(u8 taskId, TaskFunc task)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     DisplayPartyMenuStdMessage(PARTY_MSG_RESTORE_WHICH_MOVE);
     ShowMoveSelectWindow(gPartyMenu.slotId);
     gTasks[taskId].func = Task_HandleWhichMoveInput;
@@ -5107,7 +5107,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     if (cannotUse != FALSE)
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
@@ -5123,7 +5123,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             tMaxItemQuantity = min(ItemEffectToMonIV(mon, tItemEffect), tQuantityInBag);
             if (tMaxItemQuantity > 1)
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 DisplayGiveHowManyMessage();
                 gTasks[taskId].func = Task_GiveHowManyItems;
             }
@@ -5148,7 +5148,7 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
             tMaxItemQuantity = min(maxQuantityByStat, min(maxQuantityByTotal, tQuantityInBag));
             if (tMaxItemQuantity > 1)
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 DisplayGiveHowManyMessage();
                 gTasks[taskId].func = Task_GiveHowManyItems;
                 return;
@@ -5261,7 +5261,7 @@ static void Task_ChangePokeball(u8 taskId)
         GetMonNickname(mon, gStringVar1);
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, sText_ChangePokeballAsk);
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gStringVar4, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         tState++;
@@ -5302,7 +5302,7 @@ static void Task_ChangePokeball(u8 taskId)
         case 1:
         case MENU_B_PRESSED:
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ScheduleBgCopyTilemapToVram(2);
             Task_ReturnToChooseMonAfterText(taskId);
             break;
@@ -5345,7 +5345,7 @@ void Task_AbilityCapsule(u8 taskId)
             || !tSpecies)
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5355,7 +5355,7 @@ void Task_AbilityCapsule(u8 taskId)
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
         StringCopy(gStringVar2, gAbilitiesInfo[GetAbilityBySpecies(tSpecies, tAbilityNum)].name);
         StringExpandPlaceholders(gStringVar4, sText_askText);
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gStringVar4, 1);
         ScheduleBgCopyTilemapToVram(2);
         tState++;
@@ -5376,7 +5376,7 @@ void Task_AbilityCapsule(u8 taskId)
         case 1:
         case MENU_B_PRESSED:
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ScheduleBgCopyTilemapToVram(2);
             // Don't exit party selections screen, return to choosing a mon.
             ClearStdWindowAndFrameToTransparent(6, 0);
@@ -5430,7 +5430,7 @@ void Task_AbilityPatch(u8 taskId)
             )
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5440,7 +5440,7 @@ void Task_AbilityPatch(u8 taskId)
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
         StringCopy(gStringVar2, gAbilitiesInfo[GetAbilityBySpecies(tSpecies, tAbilityNum)].name);
         StringExpandPlaceholders(gStringVar4, sText_askText);
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gStringVar4, 1);
         ScheduleBgCopyTilemapToVram(2);
         tState++;
@@ -5461,7 +5461,7 @@ void Task_AbilityPatch(u8 taskId)
         case 1:
         case MENU_B_PRESSED:
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ScheduleBgCopyTilemapToVram(2);
             // Don't exit party selections screen, return to choosing a mon.
             ClearStdWindowAndFrameToTransparent(6, 0);
@@ -5529,7 +5529,7 @@ void Task_ShinGenome(u8 taskId)
         if (GetMonData(&gPlayerParty[tMonId], MON_DATA_IS_SHINY) == TRUE)
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5538,7 +5538,7 @@ void Task_ShinGenome(u8 taskId)
         gPartyMenuUseExitCallback = TRUE;
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
         StringExpandPlaceholders(gStringVar4, sText_askShinyText);
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gStringVar4, 1);
         ScheduleBgCopyTilemapToVram(2);
         tState++;
@@ -5559,7 +5559,7 @@ void Task_ShinGenome(u8 taskId)
         case 1:
         case MENU_B_PRESSED:
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ScheduleBgCopyTilemapToVram(2);
             // Don't exit party selections screen, return to choosing a mon.
             ClearStdWindowAndFrameToTransparent(6, 0);
@@ -5627,7 +5627,7 @@ void Task_Mint(u8 taskId)
         if (tOldNature == tNewNature)
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5637,7 +5637,7 @@ void Task_Mint(u8 taskId)
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
         CopyItemName(gSpecialVar_ItemId, gStringVar2);
         StringExpandPlaceholders(gStringVar4, sText_askText);
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gStringVar4, 1);
         ScheduleBgCopyTilemapToVram(2);
         tState++;
@@ -5658,7 +5658,7 @@ void Task_Mint(u8 taskId)
         case 1:
         case MENU_B_PRESSED:
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ScheduleBgCopyTilemapToVram(2);
             // Don't exit party selections screen, return to choosing a mon.
             ClearStdWindowAndFrameToTransparent(6, 0);
@@ -5738,7 +5738,7 @@ void ItemUseCB_ResetEVs(u8 taskId, TaskFunc task)
     if (cannotUseEffect)
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -5771,7 +5771,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     if (friendship == MAX_FRIENDSHIP && ev == 0)
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -5780,7 +5780,7 @@ void ItemUseCB_ReduceEV(u8 taskId, TaskFunc task)
     {
         if (tQuantityInBag > 1 && ev > 10)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayGiveHowManyMessage();
 
             tMaxItemQuantity = (I_BERRY_EV_JUMP == GEN_4 && ev > 100) ? 11 : (ev + 9) / 10;
@@ -5908,7 +5908,7 @@ static void Task_HandleWhichMoveInput(u8 taskId)
     {
         if (input == MENU_B_PRESSED)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ReturnToUseOnWhichMon(taskId);
         }
         else
@@ -5930,7 +5930,7 @@ void ItemUseCB_PPRecovery(u8 taskId, TaskFunc task)
     }
     else
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuStdMessage(PARTY_MSG_RESTORE_WHICH_MOVE);
         ShowMoveSelectWindow(gPartyMenu.slotId);
         gTasks[taskId].func = Task_HandleWhichMoveInput;
@@ -5962,7 +5962,7 @@ static void TryUseItemOnMove(u8 taskId)
         if (CannotUseItemsInBattle(gSpecialVar_ItemId, mon))
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -5987,7 +5987,7 @@ static void TryUseItemOnMove(u8 taskId)
         if (ExecuteTableBasedItemEffect(mon, item, ptr->slotId, *moveSlot, 1, 1))
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -6009,7 +6009,7 @@ static void TryUseItemOnMove(u8 taskId)
 
 void ItemUseCB_PPUp(u8 taskId, TaskFunc task)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     DisplayPartyMenuStdMessage(PARTY_MSG_BOOST_PP_WHICH_MOVE);
     ShowMoveSelectWindow(gPartyMenu.slotId);
     gTasks[taskId].func = Task_HandleWhichMoveInput;
@@ -6110,7 +6110,7 @@ void ItemUseCB_TMHM(u8 taskId, TaskFunc task)
     gPartyMenu.data1 = move;
     gPartyMenu.learnMoveState = 0;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     mon = &gPlayerParty[gPartyMenu.slotId];
 
     GetMonNickname(mon, gStringVar1);
@@ -6203,7 +6203,7 @@ static void Task_HandleReplaceMoveYesNoInput(u8 taskId)
         gTasks[taskId].func = Task_ShowSummaryScreenToForgetMove;
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         StopLearningMovePrompt(taskId);
@@ -6360,7 +6360,7 @@ static void Task_HandleStopLearningMoveYesNoInput(u8 taskId)
         }
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1:
         GetMonNickname(mon, gStringVar1);
@@ -6413,7 +6413,7 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     else
         cannotUseEffect = ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0, 0, 1);
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     if (cannotUseEffect)
     {
         u32 targetSpecies = SPECIES_NONE;
@@ -6470,7 +6470,7 @@ static void ItemUseCB_ReverseCandy(u8 taskId, TaskFunc task)
     else
         tMaxItemQuantity = min(tQuantityInBag, level - MIN_LEVEL);
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     if (tMaxItemQuantity == 0)
     {
         gPartyMenuUseExitCallback = FALSE;
@@ -6506,7 +6506,7 @@ static void Task_DisplayLevelUpStatsPg1(u8 taskId)
 {
     if (WaitFanfare(FALSE) && IsPartyMenuTextPrinterActive() != TRUE && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayLevelUpStatsPg1(taskId);
         gTasks[taskId].func = Task_DisplayLevelUpStatsPg2;
     }
@@ -6516,7 +6516,7 @@ static void Task_DisplayLevelUpStatsPg2(u8 taskId)
 {
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayLevelUpStatsPg2(taskId);
         sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
         sLevelUpInnateLevel = 0;
@@ -6876,7 +6876,7 @@ static void ClearHowManyItemsWindow(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     if (tWindowId != WINDOW_NONE)
     {
         ClearStdWindowAndFrameToTransparent(tWindowId, FALSE);
@@ -7181,7 +7181,7 @@ void Task_DynamaxCandy(u8 taskId)
         if (tDynamaxLevel == MAX_DYNAMAX_LEVEL)
         {
             gPartyMenuUseExitCallback = FALSE;
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             DisplayPartyMenuMessage(gText_WontHaveEffect, 1);
             ScheduleBgCopyTilemapToVram(2);
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -7317,7 +7317,7 @@ static void Task_SacredAshDisplayHPRestored(u8 taskId)
 
 void ItemUseCB_EvolutionStone(u8 taskId, TaskFunc task)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gCB2_AfterEvolution = gPartyMenu.exitCallback;
     if (ExecuteTableBasedItemEffect(&gPlayerParty[gPartyMenu.slotId], gSpecialVar_ItemId, gPartyMenu.slotId, 0, 1, 1))
     {
@@ -7382,7 +7382,7 @@ void FormChangeTeachMove(u8 taskId, enum Move move, u32 slot)
     gPartyMenu.data1 = move;
     gPartyMenu.learnMoveState = 0;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     mon = &gPlayerParty[slot];
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, GetMoveName(move));
@@ -7456,7 +7456,7 @@ bool32 TryItemUseFusionChange(u8 taskId, TaskFunc task)
     else
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -7703,7 +7703,7 @@ void ItemUseCB_Fusion(u8 taskId, TaskFunc taskFunc)
     u16 species = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_SPECIES);
     const struct Fusion *itemFusion = gFusionTablePointers[species];
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     switch (IsFusionMon(species))
     {
     case FALSE: // Cancel if Not a Fuse Mon
@@ -7973,7 +7973,7 @@ bool32 TryItemUseFormChange(u8 taskId, TaskFunc task)
     else
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = task;
@@ -8023,7 +8023,7 @@ bool32 TryMultichoiceFormChange(u8 taskId)
     else
     {
         gPartyMenuUseExitCallback = FALSE;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuMessage(gText_WontHaveEffect, TRUE);
         ScheduleBgCopyTilemapToVram(2);
         gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -8418,7 +8418,7 @@ static void Task_HandleSwitchItemsFromBagYesNoInput(u8 taskId)
         }
         break;
     case MENU_B_PRESSED:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         // fallthrough
     case 1: // No, dont switch items
         gTasks[taskId].func = Task_UpdateHeldItemSpriteAndClosePartyMenu;
@@ -8616,7 +8616,7 @@ static void Task_ValidateChosenHalfParty(u8 taskId)
     }
     else
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         Task_ClosePartyMenu(taskId);
     }
 }
@@ -8625,7 +8625,7 @@ static void Task_ContinueChoosingHalfParty(u8 taskId)
 {
     if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
     {
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         DisplayPartyMenuStdMessage(PARTY_MSG_CHOOSE_MON);
         gTasks[taskId].func = Task_HandleChooseMonInput;
     }
@@ -9386,7 +9386,7 @@ void IsLastMonThatKnowsSurf(void)
 
 static void CursorCb_ChangeLevelUpMoves(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gMoveRelearnerState = MOVE_RELEARNER_LEVEL_UP_MOVES;
     gRelearnMode = RELEARN_MODE_PARTY_MENU;
     gLastViewedMonIndex = gPartyMenu.slotId;
@@ -9397,7 +9397,7 @@ static void CursorCb_ChangeLevelUpMoves(u8 taskId)
 
 static void CursorCb_ChangeEggMoves(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gMoveRelearnerState = MOVE_RELEARNER_EGG_MOVES;
     gRelearnMode = RELEARN_MODE_PARTY_MENU;
     gLastViewedMonIndex = gPartyMenu.slotId;
@@ -9408,7 +9408,7 @@ static void CursorCb_ChangeEggMoves(u8 taskId)
 
 static void CursorCb_ChangeTMMoves(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gMoveRelearnerState = MOVE_RELEARNER_TM_MOVES;
     gRelearnMode = RELEARN_MODE_PARTY_MENU;
     gLastViewedMonIndex = gPartyMenu.slotId;
@@ -9419,7 +9419,7 @@ static void CursorCb_ChangeTMMoves(u8 taskId)
 
 static void CursorCb_ChangeTutorMoves(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     gMoveRelearnerState = MOVE_RELEARNER_TUTOR_MOVES;
     gRelearnMode = RELEARN_MODE_PARTY_MENU;
     gLastViewedMonIndex = gPartyMenu.slotId;
@@ -9430,7 +9430,7 @@ static void CursorCb_ChangeTutorMoves(u8 taskId)
 
 static void CursorCb_LearnMovesSubMenu(u8 taskId)
 {
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
     SetPartyMonSelectionActions(gPlayerParty, gPartyMenu.slotId, ACTIONS_MOVES_SUB);
@@ -9462,7 +9462,7 @@ void CursorCb_MoveItemCallback(u8 taskId)
             return;
         }
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gPartyMenu.action = PARTY_ACTION_CHOOSE_MON;
 
         // look up held items
@@ -9517,7 +9517,7 @@ void CursorCb_MoveItem(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
 
     // delete old windows
     PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);

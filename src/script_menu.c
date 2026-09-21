@@ -334,7 +334,7 @@ static void MultichoiceDynamic_MoveCursor(s32 itemIndex, bool8 onInit, struct Li
 {
     u8 taskId;
     if (!onInit)
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
     taskId = FindTaskIdByFunc(Task_HandleScrollingMultichoiceInput);
     if (taskId != TASK_NONE)
     {
@@ -514,7 +514,7 @@ static void Task_HandleScrollingMultichoiceInput(u8 taskId)
     {
         struct ListMenuItem *items;
 
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
 
         if (sDynamicMenuEventId != DYN_MULTICHOICE_CB_NONE && sDynamicListMenuEventCollections[sDynamicMenuEventId].OnDestroy)
         {
@@ -569,7 +569,7 @@ static void Task_HandleMultichoiceInput(u8 taskId)
                 {
                     if (tIgnoreBPress)
                         return;
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     gSpecialVar_Result = MULTI_B_PRESSED;
                 }
                 else
@@ -623,7 +623,7 @@ static void Task_HandleYesNoInput(u8 taskId)
         return;
     case MENU_B_PRESSED:
     case 1:
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gSpecialVar_Result = 0;
         break;
     case 0:
@@ -685,7 +685,7 @@ static void Task_HandleMultichoiceGridInput(u8 taskId)
     case MENU_B_PRESSED:
         if (tIgnoreBPress)
             return;
-        PlaySE(SE_SELECT);
+        PlaySE(SE_CLICK);
         gSpecialVar_Result = MULTI_B_PRESSED;
         break;
     default:

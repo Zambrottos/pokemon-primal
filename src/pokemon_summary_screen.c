@@ -1900,13 +1900,13 @@ static void Task_HandleInput(u8 taskId)
                     }
 
                     StopPokemonAnimations();
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     BeginCloseSummaryScreen(taskId);
                 }
                 else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES
                         )
                 {
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     SwitchToMoveSelection(taskId);
                 }
             }
@@ -1915,13 +1915,13 @@ static void Task_HandleInput(u8 taskId)
                 if (ShouldShowIvEvPrompt())
                 {
                     ShowMonSkillsInfo(taskId, IncrementSkillsStatsMode(sMonSummaryScreen->skillsPageMode));
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                 }
             }
             #if MAX_MON_TRAITS > 1
             else if (sMonSummaryScreen->currPageIndex == PSS_PAGE_TRAITS)
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 OpenTraitLongDescription(taskId);
             }
             #endif
@@ -1929,7 +1929,7 @@ static void Task_HandleInput(u8 taskId)
         else if (JOY_NEW(B_BUTTON))
         {
             StopPokemonAnimations();
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BeginCloseSummaryScreen(taskId);
         }
         else if (JOY_NEW(START_BUTTON)
@@ -1950,14 +1950,14 @@ static void Task_HandleInput(u8 taskId)
                 gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
             }
             StopPokemonAnimations();
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             BeginCloseSummaryScreen(taskId);
         }
         else if (DEBUG_POKEMON_SPRITE_VISUALIZER && JOY_NEW(SELECT_BUTTON) && !gMain.inBattle)
         {
             sMonSummaryScreen->callback = CB2_Pokemon_Sprite_Visualizer;
             StopPokemonAnimations();
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             CloseSummaryScreen(taskId);
         }
         else if (JOY_NEW(R_BUTTON)) // R means increase. Level -> Tutor -> Egg -> TM
@@ -1965,7 +1965,7 @@ static void Task_HandleInput(u8 taskId)
             if (P_SUMMARY_SCREEN_MOVE_RELEARNER && sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES && !gMain.inBattle)
             {
                 TryUpdateRelearnType(TRY_INCREMENT);
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ShowRelearnPrompt();
             }
         }
@@ -1974,7 +1974,7 @@ static void Task_HandleInput(u8 taskId)
             if (P_SUMMARY_SCREEN_MOVE_RELEARNER && sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES && !gMain.inBattle)
             {
                 TryUpdateRelearnType(TRY_DECREMENT);
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ShowRelearnPrompt();
             }
         }
@@ -2264,7 +2264,7 @@ static void ChangeSummaryPokemon(u8 taskId, s8 delta)
 
         if (monId != -1)
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             if (sMonSummaryScreen->summary.ailment != AILMENT_NONE)
             {
                 SetSpriteInvisibility(SPRITE_ARR_ID_STATUS, TRUE);
@@ -2451,7 +2451,7 @@ static void ChangePage(u8 taskId, s8 delta)
     else if (delta == 1 && sMonSummaryScreen->currPageIndex == sMonSummaryScreen->maxPageIndex)
         return;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     ClearPageWindowTilemaps(sMonSummaryScreen->currPageIndex);
     currPageIndex = sMonSummaryScreen->currPageIndex += delta;
     data[0] = 0;
@@ -2675,13 +2675,13 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
             if (sMonSummaryScreen->lockMovesFlag == TRUE
                 || (sMonSummaryScreen->newMove == MOVE_NONE && sMonSummaryScreen->firstMoveIndex == MAX_MON_MOVES))
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ShowUtilityPrompt(SUMMARY_MODE_NORMAL);
                 CloseMoveSelectMode(taskId);
             }
             else if (HasMoreThanOneMove() == TRUE)
             {
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 ShowUtilityPrompt(SUMMARY_MODE_SELECT_MOVE);
                 SwitchToMovePositionSwitchMode(taskId);
             }
@@ -2692,7 +2692,7 @@ static void Task_HandleInput_MoveSelect(u8 taskId)
         }
         else if (JOY_NEW(B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             CloseMoveSelectMode(taskId);
         }
     }
@@ -2714,7 +2714,7 @@ static void ChangeSelectedMove(s16 *taskData, s8 direction, u8 *moveIndexPtr)
     s8 i, newMoveIndex;
     enum Move move;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     newMoveIndex = *moveIndexPtr;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -2834,7 +2834,7 @@ static void ExitMovePositionSwitchMode(u8 taskId, bool8 swapMoves)
 {
     enum Move move;
 
-    PlaySE(SE_SELECT);
+    PlaySE(SE_CLICK);
     SetMainMoveSelectorColor(0);
     DestroyMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR2);
 
@@ -2972,7 +2972,7 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
                 if (CanReplaceMove() == TRUE)
                 {
                     StopPokemonAnimations();
-                    PlaySE(SE_SELECT);
+                    PlaySE(SE_CLICK);
                     sMoveSlotToReplace = sMonSummaryScreen->firstMoveIndex;
                     gSpecialVar_0x8005 = sMoveSlotToReplace;
                     gSpecialVar_Result = TRUE;
@@ -2987,7 +2987,7 @@ static void Task_HandleReplaceMoveInput(u8 taskId)
             else if (JOY_NEW(B_BUTTON))
             {
                 StopPokemonAnimations();
-                PlaySE(SE_SELECT);
+                PlaySE(SE_CLICK);
                 sMoveSlotToReplace = MAX_MON_MOVES;
                 gSpecialVar_0x8005 = MAX_MON_MOVES;
                 gSpecialVar_Result = FALSE;
@@ -5484,17 +5484,17 @@ static void Task_HandleInput_LongDescription(u8 taskId)
     {
         if (JOY_NEW(DPAD_UP))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ChangeSelectedTraitLongDescription(-1);
         }
         else if (JOY_NEW(DPAD_DOWN))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             ChangeSelectedTraitLongDescription(1);
         }
         else if (JOY_NEW(A_BUTTON | B_BUTTON))
         {
-            PlaySE(SE_SELECT);
+            PlaySE(SE_CLICK);
             CloseTraitLongDescription(taskId);
         }
     }
