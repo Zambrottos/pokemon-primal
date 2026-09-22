@@ -14,6 +14,8 @@ PrimalStarterCave_EventScript_Chikorita::
 
 PrimalStarterCave_EventScript_ChooseChikorita::
         setvar VAR_PRIMAL_STARTER, 1
+        givemon SPECIES_CHIKORITA, 5
+        special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
         release
         end
@@ -31,6 +33,8 @@ PrimalStarterCave_EventScript_Cyndaquil::
 
 PrimalStarterCave_EventScript_ChooseCyndaquil::
         setvar VAR_PRIMAL_STARTER, 2
+        givemon SPECIES_CYNDAQUIL, 5
+        special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
         release
         end
@@ -48,6 +52,8 @@ PrimalStarterCave_EventScript_Totodile::
 
 PrimalStarterCave_EventScript_ChooseTotodile::
         setvar VAR_PRIMAL_STARTER, 3
+        givemon SPECIES_TOTODILE, 5
+        special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
         release
         end

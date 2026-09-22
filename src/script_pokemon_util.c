@@ -179,6 +179,14 @@ void CreateScriptedDoubleWildMon(u16 species1, u8 level1, enum Item item, enum I
     }
 }
 
+void PrimalSetNewestMonToOneHP(void)
+{
+    u16 hp = 1;
+
+    if (gPlayerPartyCount > 0)
+        SetMonData(&gPlayerParty[gPlayerPartyCount - 1], MON_DATA_HP, &hp);
+}
+
 void ScriptSetMonMoveSlot(u8 monIndex, enum Move move, u8 slot)
 {
 // Allows monIndex to go out of bounds of gPlayerParty. Doesn't occur in vanilla
