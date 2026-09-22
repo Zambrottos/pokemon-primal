@@ -2415,3 +2415,5 @@ Common_Text_ReceivedMon:
 	.include "data/maps/BattleCafe/scripts.inc"
 
 	.include "data/maps/PrimalStarterCave/scripts.inc"
+
+	.include "data/maps/RunawayCaveB1F/scripts.inc"

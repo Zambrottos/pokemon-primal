@@ -10346,6 +10346,16 @@
       "secondary_tileset": "gTileset_Cave_DragonsDen",
       "border_filepath": "data/layouts/PrimalStarterCave/border.bin",
       "blockdata_filepath": "data/layouts/PrimalStarterCave/map.bin"
+    },
+    {
+      "id": "LAYOUT_RUNAWAY_CAVE_B1F",
+      "name": "RunawayCaveB1F_Layout",
+      "width": 15,
+      "height": 25,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_MeteorCave",
+      "border_filepath": "data/layouts/RunawayCaveB1F/border.bin",
+      "blockdata_filepath": "data/layouts/RunawayCaveB1F/map.bin"
     }
   ]
 }

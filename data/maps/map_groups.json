@@ -34,7 +34,8 @@
     "gMapGroup_Emerald3",
     "gMapGroup_Emerald4",
     "gMapGroup_Emerald5",
-    "gMapGroup_IndoorRinto"
+    "gMapGroup_IndoorRinto",
+    "gMapGroup_PRIMALSTART"
   ],
   "gMapGroup_TownsAndRoutes": [
     "NewBarkTown",
@@ -103,8 +104,7 @@
     "SouthPassageLeft",
     "FarawayIsland_Outside",
     "Route33South_Underwater",
-    "Route50Underwater",
-    "PrimalStarterCave"
+    "Route50Underwater"
   ],
   "gMapGroup_IndoorNewBark": [
     "NewBarkTown_Lab",
@@ -1208,6 +1208,10 @@
     "RintoHouse2",
     "RintoHouse3",
     "RintoVillage_Mart"
+  ],
+  "gMapGroup_PRIMALSTART": [
+    "PrimalStarterCave",
+    "RunawayCaveB1F"
   ],
   "rom_excluded_groups": [
     "gMapGroup_Emerald1",

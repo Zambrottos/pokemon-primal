@@ -79,7 +79,6 @@ enum
     MAP_FARAWAY_ISLAND_OUTSIDE    = (64 | (0 << 8)),
     MAP_ROUTE33SOUTH_UNDERWATER   = (65 | (0 << 8)),
     MAP_ROUTE50UNDERWATER         = (66 | (0 << 8)),
-    MAP_PRIMAL_STARTER_CAVE       = (67 | (0 << 8)),
 
     // gMapGroup_IndoorNewBark
     MAP_NEW_BARK_TOWN_LAB              = (0 | (1 << 8)),
@@ -1185,6 +1184,10 @@ enum
     MAP_RINTO_HOUSE3        = (3 | (34 << 8)),
     MAP_RINTO_VILLAGE_MART  = (4 | (34 << 8)),
 
+    // gMapGroup_PRIMALSTART
+    MAP_PRIMAL_STARTER_CAVE = (0 | (35 << 8)),
+    MAP_RUNAWAY_CAVE_B1F    = (1 | (35 << 8)),
+
 };
 
 //Constants for unused maps
@@ -1501,6 +1504,6 @@ enum
 #define MAP_POKEMON_MANSION_3F                           31293
 #define MAP_POKEMON_MANSION_B1F                          31294
 
-#define MAP_GROUPS_COUNT 35
+#define MAP_GROUPS_COUNT 36
 
 #endif // GUARD_CONSTANTS_MAP_GROUPS_H
