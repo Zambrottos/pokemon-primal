@@ -1,5 +1,5 @@
 PrimalStarterCave_MapScripts::
-	.byte 0
+        .byte 0
 
 PrimalStarterCave_EventScript_Chikorita::
         lock
@@ -17,6 +17,8 @@ PrimalStarterCave_EventScript_ChooseChikorita::
         givemon SPECIES_CHIKORITA, 5
         special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
+	setflag FLAG_PRIMAL_HIDE_RESCUED_STARTER
+	removeobject 2
         release
         end
 
