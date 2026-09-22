@@ -17,7 +17,7 @@ PrimalStarterCave_EventScript_ChooseChikorita::
         givemon SPECIES_CHIKORITA, 5
         special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
-	setflag FLAG_PRIMAL_HIDE_RESCUED_STARTER
+	setflag FLAG_PRIMAL_HIDE_RESCUED_CHIKORITA
 	removeobject 2
         release
         end
@@ -38,6 +38,8 @@ PrimalStarterCave_EventScript_ChooseCyndaquil::
         givemon SPECIES_CYNDAQUIL, 5
         special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
+        setflag FLAG_PRIMAL_HIDE_RESCUED_CYNDAQUIL
+        removeobject 3
         release
         end
 
@@ -57,6 +59,8 @@ PrimalStarterCave_EventScript_ChooseTotodile::
         givemon SPECIES_TOTODILE, 5
         special PrimalSetNewestMonToOneHP
         msgbox PrimalStarterCave_Text_DecidedToHelp, MSGBOX_DEFAULT
+        setflag FLAG_PRIMAL_HIDE_RESCUED_TOTODILE
+        removeobject 1
         release
         end
 
