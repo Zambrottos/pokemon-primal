@@ -7,6 +7,7 @@
 #include "daycare.h"
 #include "decompress.h"
 #include "event_data.h"
+#include "field_screen_effect.h"
 #include "international_string_util.h"
 #include "item.h"
 #include "link.h"
@@ -810,4 +811,18 @@ void CreateScriptedWildMon2(u16 species, u8 level, u16 item, u8 abilityNum, u16 
     {
         SetMonMoveSlot(&gEnemyParty[0], move4, 3);
     }
+}
+
+void PrimalFallToRunawayCave(void)
+{
+    SetWarpDestination(
+        MAP_GROUP(MAP_RUNAWAY_CAVE_B1F),
+        MAP_NUM(MAP_RUNAWAY_CAVE_B1F),
+        WARP_ID_NONE,
+        5,
+        3
+    );
+
+    DoFallWarp();
+    ResetInitialPlayerAvatarState();
 }

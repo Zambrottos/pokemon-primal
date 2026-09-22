@@ -17,6 +17,7 @@
 gSpecials::
 	def_special HealPlayerParty
         def_special PrimalSetNewestMonToOneHP
+def_special PrimalFallToRunawayCave
 	def_special StartBlackJack
 	def_special StartGacha
 	def_special StartBlockStacker
